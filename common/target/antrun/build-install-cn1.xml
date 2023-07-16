@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="maven-antrun-" default="install-cn1">
+  <target name="install-cn1">
+    <available file="/Users/mrducky/.codenameone/guibuilder.jar" property="codenameone.present" />
+    <mkdir dir="/Users/mrducky/.codenameone" />
+    <mkdir dir="/Users/mrducky/Downloads/myapp/common/target/codenameone/tmpProject" />
+    <get skipexisting="true" src="https://www.codenameone.com/files/updates/UpdateCodenameOne.jar" dest="/Users/mrducky/UpdateCodenameOne.jar" />
+    <java fork="true" jar="/Users/mrducky/UpdateCodenameOne.jar">
+      <arg value="/Users/mrducky/Downloads/myapp/common/target/codenameone/tmpProject" />
+      <arg value="force" />
+    </java>
+  </target>
+</project>
