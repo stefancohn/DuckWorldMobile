@@ -1,7 +1,7 @@
 package com.example.entity;
-import com.codename1.ui.EncodedImage;
+import com.codename1.ui.Image;
 import com.codename1.ui.Graphics;
-import com.example.audio.AudioPlayer;
+import com.codename1.ui.Image;
 import com.example.handler.KeyHandler;
 import com.example.myapp.Game;
 import com.example.statemanager.PlayingScene;
@@ -11,14 +11,14 @@ import com.example.util.LoadSave;
 import com.example.util.SaveScores;
 
     public class Ducky extends Entity {
-        EncodedImage duckSprite;
+        Image duckSprite;
 
         //duck dimensions
         public static int duckDimensionsIdle = 37; 
         public static int duckDimensionsSide = 21;
 
         //animation variables
-        EncodedImage[][] duckAni = new EncodedImage[6][5];
+        Image[][] duckAni = new Image[6][5];
         int spriteLoop = 0;
         int spriteRow = 0;
         int spriteCol = 0;
@@ -64,7 +64,7 @@ import com.example.util.SaveScores;
         private void loadAni() {
             for (int i =0; i < duckAni.length; i++) {
                 for (int j = 0; j < duckAni[i].length; j++) {
-                    duckAni[i][j] =(EncodedImage) duckSprite.subImage(j * 16, i * 16, Constants.TILES_SIZE, Constants.TILES_SIZE, false);
+                    duckAni[i][j] =(Image) duckSprite.subImage(j * 16, i * 16, Constants.TILES_SIZE, Constants.TILES_SIZE, false);
                 }
             }
         }
@@ -114,10 +114,10 @@ import com.example.util.SaveScores;
                 aniTick = 0;
 
                 if (isDead && spriteLoop == 0) { //to play death sound
-                    Game.game.getAudioPlayer().playEffect(AudioPlayer.DEATH);
+                    //Game.game.getAudioPlayer().playEffect(AudioPlayer.DEATH);
                 }
                 if (isAttacking && spriteLoop == 1) { //to play quack sound
-                    Game.game.getAudioPlayer().playEffect(AudioPlayer.ATTACK);
+                   // Game.game.getAudioPlayer().playEffect(AudioPlayer.ATTACK);
                 }
 
                 spriteLoop++;
@@ -269,7 +269,7 @@ import com.example.util.SaveScores;
         private void jump() { //sets jump and inAir to true and plays jump effect
             inAir = true;
             jump = true;
-            Game.game.getAudioPlayer().playEffect(AudioPlayer.JUMP);
+            //Game.game.getAudioPlayer().playEffect(AudioPlayer.JUMP);
         }
 
         public void xOffsetForConstantMove(int xOffset) {
@@ -284,7 +284,7 @@ import com.example.util.SaveScores;
                 isDead = true;
             }
             if (isDead) {
-                Game.game.getAudioPlayer().stopSong();
+                //Game.game.getAudioPlayer().stopSong();
                 direction = "death"; //perform death animation
                 aniSpeed= 60; //slow down the speed so it performs properly 
             }

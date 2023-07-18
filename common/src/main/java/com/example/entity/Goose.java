@@ -1,12 +1,13 @@
 package com.example.entity;
-import com.codename1.ui.EncodedImage;
+import com.codename1.ui.Image;
+import com.codename1.io.FileSystemStorage;
 import com.codename1.ui.Graphics;
 import com.example.util.Collisions;
 import com.example.util.Constants;
 import com.example.util.LoadSave;
 
 public class Goose extends Entity {
-    EncodedImage[][] gooseImages = new EncodedImage[2][1];
+    Image[][] gooseImages = new Image[2][1];
 
     int[][] levelData;
 
@@ -30,11 +31,11 @@ public class Goose extends Entity {
         initializeGoose();
     }
 
-    private void initializeGoose() { //put images of goose into EncodedImage array
-        EncodedImage img = LoadSave.getSpriteAtlas("/res/Goose.png");
+    private void initializeGoose() { //put images of goose into Image array
+        Image img = LoadSave.getSpriteAtlas(FileSystemStorage.getInstance().getAppHomePath() + "res/Goose.png");
         for (int i = 0; i < gooseImages.length; i++) {
             for (int j = 0; j < gooseImages[i].length; j++) {
-                gooseImages[i][j] = (EncodedImage) img.subImage(j * 16, i * 16, 16, 16, false);
+                gooseImages[i][j] = (Image) img.subImage(j * 16, i * 16, 16, 16, false);
             }
         }
     }

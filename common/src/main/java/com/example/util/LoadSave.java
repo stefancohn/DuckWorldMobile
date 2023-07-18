@@ -2,21 +2,21 @@ package com.example.util;
 import java.io.IOException;
 import java.io.InputStream;
 import com.codename1.io.FileSystemStorage;
-import com.codename1.ui.EncodedImage;
+import com.codename1.ui.Image;
 
 public class LoadSave {
-    public static final String DUCKY_ATLAS = "/res/duckySprite.png";
-    public static final String LEVEL_ATLAS = "/res/mapSprite.png";
+    public static final String DUCKY_ATLAS = FileSystemStorage.getInstance().getAppHomePath() + "res/duckySprite.png";
+    public static final String LEVEL_ATLAS = FileSystemStorage.getInstance().getAppHomePath() + "res/mapSprite.png";
 
-    public static final String START_LEVEL = "/res/levelOne.png";
-    public static final String OBSTACLE_SEQUENCES = "/res/levelSequences.png";
+    public static final String START_LEVEL = FileSystemStorage.getInstance().getAppHomePath() + "res/levelOne.png";
+    public static final String OBSTACLE_SEQUENCES = FileSystemStorage.getInstance().getAppHomePath() + "res/levelSequences.png";
 
-    //method to pull EncodedImage from file 
-    public static EncodedImage getSpriteAtlas(String file) {
-        EncodedImage img = null;
+    //method to pull Image from file 
+    public static Image getSpriteAtlas(String file) {
+        Image img = null;
         try {
             InputStream is = FileSystemStorage.getInstance().openInputStream(file);
-            img = EncodedImage.create(is);
+            img = Image.createImage(is);
             is.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -27,7 +27,7 @@ public class LoadSave {
     //grabs the Red value of each tile of level map and rerturns it as 
     //a 2d array
     public static int[][] getLevelDataRed(String file) {
-        EncodedImage img = getSpriteAtlas(file);
+        Image img = getSpriteAtlas(file);
         int[][] levelData = new int[img.getHeight()] [img.getWidth()];
         int[] rgbData = img.getRGB();
 
@@ -46,7 +46,7 @@ public class LoadSave {
         return levelData;
     }
     //same method as above but works with images instead of files
-    public static int[][] getLevelDataRedImg(EncodedImage img) {
+    public static int[][] getLevelDataRedImg(Image img) {
         int[][] levelData = new int[img.getHeight()][img.getWidth()];
         int[] rgbData = img.getRGB();
 
@@ -67,7 +67,7 @@ public class LoadSave {
 
     //retrieves blue num of RGB for enemy spawn
     public static int[][] getLevelDataBlue(String file) {
-        EncodedImage img = getSpriteAtlas(file);
+        Image img = getSpriteAtlas(file);
         int[][] levelData = new int[img.getHeight()] [img.getWidth()];
 
         int[] rgbData = img.getRGB();   

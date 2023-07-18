@@ -26,9 +26,11 @@ public class Game implements Runnable {
     public AudioPlayer audioPlayer = new AudioPlayer(); //audio player 
     public VolumeButton volumeButton = new VolumeButton(panel.mh);
 
+    int i = 0;
+
     public Game() {
         changeState(sceneNum);
-        frame.add(panel);
+       // frame.add(panel);
         //frame.pack();
         //frame.setIconImage(logo.getImage());
         frame.setVisible(true);
@@ -68,15 +70,15 @@ public class Game implements Runnable {
         switch (sceneNum) {
             case Constants.SCENE_MENU: 
                 currentScene = new MenuScene(panel.mh);
-                audioPlayer.playSong(AudioPlayer.MENU_SONG);
+                //audioPlayer.playSong(AudioPlayer.MENU_SONG);
                 break;
             case Constants.SCENE_PLAYING:
                 currentScene = new PlayingScene(duck);
-                audioPlayer.playSong(AudioPlayer.PLAYING_SONG);
+                //audioPlayer.playSong(AudioPlayer.PLAYING_SONG);
                 break;
             case Constants.SCENE_DEATH: 
                 currentScene = new DeathScene(panel.mh);
-                audioPlayer.playSong(AudioPlayer.HIGHSCORE_SONG);
+                //audioPlayer.playSong(AudioPlayer.HIGHSCORE_SONG);
                 break;
             default:
                 currentScene = null;
@@ -113,6 +115,10 @@ public class Game implements Runnable {
     //all rendering and updating stems from here 
     public void update() {
         currentScene.update();
+        i++;
+        if (i == 100) {
+            changeState(1);
+        }
     }
     public void draw(Graphics g) {
         currentScene.draw(g);

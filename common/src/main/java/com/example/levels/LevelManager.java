@@ -1,13 +1,14 @@
 package com.example.levels;
-import com.codename1.ui.EncodedImage;
+import com.codename1.ui.Image;
+import com.codename1.io.FileSystemStorage;
 import com.codename1.ui.Graphics;
 import com.example.util.Constants;
 import com.example.util.LoadSave;
 
 public class LevelManager {
-    private EncodedImage[] levelSprite = new EncodedImage[6];  //holds all the blocks from sprite sheet to build level 
-    private EncodedImage[] obstacleSprites = new EncodedImage[Constants.AMOUNT_OF_PATTERNS]; //holds all random level patterns 
-    private EncodedImage background = LoadSave.getSpriteAtlas("/res/background.png");
+    private Image[] levelSprite = new Image[6];  //holds all the blocks from sprite sheet to build level 
+    private Image[] obstacleSprites = new Image[Constants.AMOUNT_OF_PATTERNS]; //holds all random level patterns 
+    private Image background = LoadSave.getSpriteAtlas(FileSystemStorage.getInstance().getAppHomePath() + "res/background.png");
 
     Level mainLevel;
     Level[] obstacleSequences = new Level[Constants.AMOUNT_OF_PATTERNS];
@@ -22,17 +23,17 @@ public class LevelManager {
 
     //grabs each block of map sprite into an array so map can be built
     public void importLevelSprite() {
-        EncodedImage img = LoadSave.getSpriteAtlas(LoadSave.LEVEL_ATLAS);
+        Image img = LoadSave.getSpriteAtlas(LoadSave.LEVEL_ATLAS);
         for (int i = 0; i < levelSprite.length; i++) {
-            levelSprite[i] = (EncodedImage) img.subImage(i * 16, 0, 16, 16, false);
+            levelSprite[i] = (Image) img.subImage(i * 16, 0, 16, 16, false);
         }
     }
 
     //creates levelDatas for obstacles sprites
     public void importObstacleSequences() {
-        EncodedImage img = LoadSave.getSpriteAtlas(LoadSave.OBSTACLE_SEQUENCES); //loads gimp file into bufferedimg
+        Image img = LoadSave.getSpriteAtlas(LoadSave.OBSTACLE_SEQUENCES); //loads gimp file into bufferedimg
         for (int j = 0; j < (img.getWidth()/Constants.TILES_IN_WIDTH); j++) {
-            obstacleSprites[j] = (EncodedImage) img.subImage(j * 50, 0, 50, 30, false); //fills in array of bufferedimg with subimages of obstacle sequences
+            obstacleSprites[j] = (Image) img.subImage(j * 50, 0, 50, 30, false); //fills in array of bufferedimg with subimages of obstacle sequences
         }
         for (int i = 0; i < obstacleSprites.length; i ++) {
             obstacleSequences[i] = new Level(LoadSave.getLevelDataRedImg(obstacleSprites[i])); //retrieves leveldata RGB

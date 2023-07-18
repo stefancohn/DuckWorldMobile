@@ -11,7 +11,7 @@ public class GameForm extends Form { //JPanel equivelant
         this.setScrollable(false);
         //this.setSwipeActivated(false);
         this.setBackCommand(null);
-        this.setTitle("Duck World");
+        //this.setTitle("Duck World");
         this.getContentPane().addComponent(BorderLayout.CENTER, container);
         this.show();
     }

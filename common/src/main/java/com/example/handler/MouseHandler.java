@@ -1,12 +1,10 @@
 package com.example.handler;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
-public class MouseHandler extends MouseAdapter {
+public class MouseHandler {
     public boolean clicked = false;
     public int x, y;
 
-    @Override
+    /*@Override
     public void mouseMoved(MouseEvent e) {
         this.x = e.getX();
         this.y = e.getY();
@@ -20,5 +18,5 @@ public class MouseHandler extends MouseAdapter {
     @Override
     public void mouseReleased(MouseEvent e) {
         clicked = false;
-    }
+    } */
 }

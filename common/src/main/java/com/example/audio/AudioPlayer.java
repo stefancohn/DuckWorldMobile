@@ -1,18 +1,8 @@
 package com.example.audio;
 
-import java.io.IOException;
-import java.net.URL;
-
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.FloatControl;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-
 public class AudioPlayer {
-    public Clip[] songs; //array of all songs
-    public Clip[] effects; //array of all sound effects 
+   // public Clip[] songs; //array of all songs
+    //public Clip[] effects; //array of all sound effects 
 
     //song selection
     public static int MENU_SONG = 0;
@@ -32,30 +22,29 @@ public class AudioPlayer {
     public AudioPlayer() {
         loadSong(); //load da songs
         loadEffects(); //load effects
-        playSong(MENU_SONG);
     }
 
     private void loadSong() { //load song into clip array
-        String[] names = { "/res/Sounds/introMusic.wav", "/res/Sounds/fluffingADuck.wav", "/res/Sounds/highscoreMusic.wav"};
+       /* String[] names = { "/res/Sounds/introMusic.wav", "/res/Sounds/fluffingADuck.wav", "/res/Sounds/highscoreMusic.wav"};
 		songs = new Clip[names.length];
 		for (int i = 0; i < songs.length; i++) {
 			songs[i] = getClip(names[i]); //here is where we put them into array
-        }
+        } */
     }
 
     private void loadEffects() { //load effects into clip array 
-        String[] names = { "/res/Sounds/quack.wav", "/res/Sounds/jumpEffect.wav", "/res/Sounds/duckDeath.wav",
-         "/res/Sounds/gooseDeath.wav"};
+        /*String[] names = { "/res/Sounds/quack.wav", "/res/Sounds/jumpEffect.wav", "/res/Sounds/duckDeath.wav",
+        "/res/Sounds/gooseDeath.wav"};
         effects = new Clip[names.length];
 
         for (int i = 0; i < effects.length; i++) {
             effects[i] = getClip(names[i]);
         }
-        updateEffectsVolume();
+        updateEffectsVolume(); */
     }
     
     //put an audio in a clip 
-    public Clip getClip(String name) { 
+    /* public Clip getClip(String name) { 
         URL url = getClass().getResource(name);
 		AudioInputStream audio;
 
@@ -72,9 +61,9 @@ public class AudioPlayer {
 
 		return null;
 
-	}
+	} 
 
-    private void updateSongVolume() {
+    private void updateSongVolume() { 
         FloatControl gainControl = (FloatControl) songs[currentSongID].getControl(FloatControl.Type.MASTER_GAIN); //retrieve the "volume" control of current clip playing
 		float range = gainControl.getMaximum() - gainControl.getMinimum(); //retreive the amount of possible volume (min will be negative, making the range higher than the max)
 		float gain = (range * volume) + gainControl.getMinimum(); //this is where volume comes in play. a value of 1 is maxed volume because of the negative minimum 
@@ -87,9 +76,9 @@ public class AudioPlayer {
 			float gain = (range * volume) + gainControl.getMinimum();
 			gainControl.setValue(gain);
 		}
-    }
+    } */
 
-    public void playSong(int song) {
+    /* public void playSong(int song) { 
         stopSong(); //stop song if there is one playing to prevent over lap
 
         currentSongID = song; //update song ID
@@ -118,5 +107,5 @@ public class AudioPlayer {
 		this.volume = volume;
 		updateSongVolume();
 		updateEffectsVolume();
-	}
+	} */
 }

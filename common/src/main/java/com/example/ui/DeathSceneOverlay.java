@@ -1,8 +1,10 @@
 package com.example.ui;
 
-import com.codename1.ui.EncodedImage;
+import com.codename1.io.FileSystemStorage;
+import com.codename1.ui.Image;
 import com.codename1.ui.Font;
 import com.codename1.ui.Graphics;
+import com.codename1.ui.Image;
 import com.example.handler.MouseHandler;
 import com.example.myapp.Game;
 import com.example.util.Constants;
@@ -11,7 +13,7 @@ import com.example.util.SaveScores;
 
 public class DeathSceneOverlay {
     MouseHandler mh;
-    EncodedImage[][] deathSceneButtons = new EncodedImage[2][2]; //holds sprites 
+    Image[][] deathSceneButtons = new Image[2][2]; //holds sprites 
 
     //button variables
     int buttonWidth = 275;
@@ -30,10 +32,10 @@ public class DeathSceneOverlay {
     }
 
     public void loadButtons() { //get button from image and place it into array
-        EncodedImage img = LoadSave.getSpriteAtlas("/res/deathScreenButtons.png");
+        Image img = LoadSave.getSpriteAtlas(FileSystemStorage.getInstance().getAppHomePath() + "res/deathScreenButtons.png");
         for (int i = 0; i < deathSceneButtons.length; i++) {
             for (int j = 0; j < deathSceneButtons[i].length; j++) {
-                deathSceneButtons[i][j] = (EncodedImage) img.subImage(j * 200, i * 50, 200, 50, false);
+                deathSceneButtons[i][j] = (Image) img.subImage(j * 200, i * 50, 200, 50, false);
             }
         }
     }

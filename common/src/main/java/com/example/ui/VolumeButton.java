@@ -1,5 +1,6 @@
 package com.example.ui;
-import com.codename1.ui.EncodedImage;
+import com.codename1.io.FileSystemStorage;
+import com.codename1.ui.Image;
 import com.codename1.ui.Graphics;
 import com.example.handler.MouseHandler;
 import com.example.myapp.Game;
@@ -11,7 +12,7 @@ public class VolumeButton {
     Boolean toggle = false;
     Boolean stopClick = true;
 
-    EncodedImage[][] volumeButtons = new EncodedImage[2][2]; //holds sprites
+    Image[][] volumeButtons = new Image[2][2]; //holds sprites
     int volumeHovered = 0; //update this int to display greyed out icon when hovered
     int volumeSprite = 0; //update this to show either the muted or default icon 
 
@@ -21,10 +22,10 @@ public class VolumeButton {
     }
 
     private void loadButton() { //put buttons into array 
-        EncodedImage img = LoadSave.getSpriteAtlas("/res/volumeToggle.png");
+        Image img = LoadSave.getSpriteAtlas(FileSystemStorage.getInstance().getAppHomePath() + "res/volumeToggle.png");
         for (int i = 0; i < volumeButtons.length; i++) {
             for (int j = 0; j < volumeButtons[i].length; j++) {
-                volumeButtons[i][j] = (EncodedImage) img.subImage(j * 230, i * 170, 230, 170, false);
+                volumeButtons[i][j] = (Image) img.subImage(j * 230, i * 170, 230, 170, false);
             }
         }
     }
@@ -45,13 +46,13 @@ public class VolumeButton {
 
     private void iconMuted() {
         volumeSprite = 1;
-        Game.game.getAudioPlayer().setVolume(0f);
+        //Game.game.getAudioPlayer().setVolume(0f);
         toggle = true;
         stopClick = false;
     }
     private void iconUnmuted() {
         volumeSprite = 0;
-        Game.game.getAudioPlayer().setVolume(0.8f);
+        //Game.game.getAudioPlayer().setVolume(0.8f);
         toggle = false;
         stopClick = false;
     }

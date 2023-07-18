@@ -1,10 +1,8 @@
 package com.example.handler;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 import com.example.statemanager.PlayingScene;
 
-public class KeyHandler implements KeyListener {
+public class KeyHandler {
     public Boolean upPressed = false;
     public Boolean downPressed = false;
     public Boolean leftPressed = false;
@@ -13,7 +11,7 @@ public class KeyHandler implements KeyListener {
     public Boolean pause = false;
     public String direction = "";
 
-    @Override
+    /*@Override
     public void keyTyped(KeyEvent e) {
     }
 
@@ -67,7 +65,7 @@ public class KeyHandler implements KeyListener {
             leftPressed = false;
             direction = "";
         }
-    }
+    } */
     public Boolean getUpPres() { return upPressed; }
     public Boolean getDownPres() { return downPressed; }
     public Boolean getRightPres() { return rightPressed; }

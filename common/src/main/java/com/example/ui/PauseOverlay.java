@@ -1,5 +1,6 @@
 package com.example.ui;
-import com.codename1.ui.EncodedImage;
+import com.codename1.io.FileSystemStorage;
+import com.codename1.ui.Image;
 import com.codename1.ui.Graphics;
 import com.example.handler.MouseHandler;
 import com.example.myapp.Game;
@@ -9,13 +10,13 @@ import com.example.util.LoadSave;
 
 public class PauseOverlay {
     MouseHandler mh;
-    EncodedImage pauseOverlay;
+    Image pauseOverlay;
 
     int xPlacementForOverlay;
     int yPlacementForOverlay;
 
     //buttons stuffs
-    EncodedImage[][] pauseButtons = new EncodedImage[2][2];
+    Image[][] pauseButtons = new Image[2][2];
     int xPlacementForButtons;
     int playButtonY = 150;
     int quitButtonY = 275;
@@ -31,7 +32,7 @@ public class PauseOverlay {
     }
 
     public void initialzePauseOverlay() {
-        pauseOverlay = LoadSave.getSpriteAtlas("/res/pauseScreen.png");
+        pauseOverlay = LoadSave.getSpriteAtlas(FileSystemStorage.getInstance().getAppHomePath() + "res/pauseScreen.png");
         xPlacementForOverlay = (Constants.GAME_WIDTH/2) - (pauseOverlay.getWidth()/2);
         yPlacementForOverlay = (Constants.GAME_HEIGHT/2) - (pauseOverlay.getHeight()/2) - 20;
     }
@@ -39,10 +40,10 @@ public class PauseOverlay {
     public void initializePauseButtons() {
         xPlacementForButtons = xPlacementForOverlay + 25;
 
-        EncodedImage img = LoadSave.getSpriteAtlas("/res/pauseButtons.png");
+        Image img = LoadSave.getSpriteAtlas(FileSystemStorage.getInstance().getAppHomePath() + "res/pauseButtons.png");
         for (int i = 0; i < pauseButtons.length; i++) {
             for (int j = 0; j < pauseButtons[i].length; j++) {
-                pauseButtons[i][j] = (EncodedImage) img.subImage(j * buttonWidth, i * buttonHeight, buttonWidth, buttonHeight, false);
+                pauseButtons[i][j] = img.subImage(j * buttonWidth, i * buttonHeight, buttonWidth, buttonHeight, false);
             }
         }
     }

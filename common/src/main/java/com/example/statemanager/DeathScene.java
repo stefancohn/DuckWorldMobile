@@ -1,5 +1,6 @@
 package com.example.statemanager;
-import com.codename1.ui.EncodedImage;
+import com.codename1.ui.Image;
+import com.codename1.io.FileSystemStorage;
 import com.codename1.ui.Graphics;
 
 import com.example.handler.MouseHandler;
@@ -10,7 +11,7 @@ public class DeathScene extends Scene {
     MouseHandler mh;
     DeathSceneOverlay overlay;
 
-    EncodedImage background = LoadSave.getSpriteAtlas("/res/backgroundDeath.png");
+    Image background = LoadSave.getSpriteAtlas(FileSystemStorage.getInstance().getAppHomePath() + "res/backgroundDeath.png");
 
     public DeathScene(MouseHandler mh) {
         this.mh = mh;
