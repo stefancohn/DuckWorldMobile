@@ -1,7 +1,6 @@
 package com.example.ui;
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-
+import com.codename1.ui.EncodedImage;
+import com.codename1.ui.Graphics;
 import com.example.handler.MouseHandler;
 import com.example.myapp.Game;
 import com.example.util.Constants;
@@ -12,7 +11,7 @@ public class VolumeButton {
     Boolean toggle = false;
     Boolean stopClick = true;
 
-    BufferedImage[][] volumeButtons = new BufferedImage[2][2]; //holds sprites
+    EncodedImage[][] volumeButtons = new EncodedImage[2][2]; //holds sprites
     int volumeHovered = 0; //update this int to display greyed out icon when hovered
     int volumeSprite = 0; //update this to show either the muted or default icon 
 
@@ -22,10 +21,10 @@ public class VolumeButton {
     }
 
     private void loadButton() { //put buttons into array 
-        BufferedImage img = LoadSave.getSpriteAtlas("/res/volumeToggle.png");
+        EncodedImage img = LoadSave.getSpriteAtlas("/res/volumeToggle.png");
         for (int i = 0; i < volumeButtons.length; i++) {
             for (int j = 0; j < volumeButtons[i].length; j++) {
-                volumeButtons[i][j] = img.getSubimage(j * 230, i * 170, 230, 170);
+                volumeButtons[i][j] = (EncodedImage) img.subImage(j * 230, i * 170, 230, 170, false);
             }
         }
     }
@@ -63,6 +62,6 @@ public class VolumeButton {
 
     public void draw(Graphics g){
         //draw icon
-        g.drawImage(volumeButtons[volumeSprite][volumeHovered], 0, Constants.GAME_HEIGHT - 50, 50, 50, null);
+        g.drawImage(volumeButtons[volumeSprite][volumeHovered], 0, Constants.GAME_HEIGHT - 50, 50, 50);
     }
 }

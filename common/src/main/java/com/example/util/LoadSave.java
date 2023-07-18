@@ -1,11 +1,6 @@
 package com.example.util;
-import java.awt.Color;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
-
-import javax.imageio.ImageIO;
-
 import com.codename1.io.FileSystemStorage;
 import com.codename1.ui.EncodedImage;
 
@@ -51,13 +46,16 @@ public class LoadSave {
         return levelData;
     }
     //same method as above but works with images instead of files
-    public static int[][] getLevelDataRedImg(BufferedImage img) {
+    public static int[][] getLevelDataRedImg(EncodedImage img) {
         int[][] levelData = new int[img.getHeight()][img.getWidth()];
-        
+        int[] rgbData = img.getRGB();
+
         for (int i = 0; i < img.getHeight(); i++) {
             for (int j = 0; j < img.getWidth(); j++) {
-                Color color = new Color(img.getRGB(j, i));
-                int value = color.getRed();
+                int rgb = rgbData[i * img.getWidth() + j];
+                int red = (rgb >> 16) & 0xFF;
+
+                int value = red;
                 if (value >= 6) {
                     value = 4;
                 }
@@ -67,21 +65,22 @@ public class LoadSave {
         return levelData;
         }
 
-        //retrieves blue num of RGB for enemy spawn
-        public static int[][] getLevelDataBlue(String file) {
-            BufferedImage img = getSpriteAtlas(file);
-            int[][] levelData = new int[img.getHeight()] [img.getWidth()];
+    //retrieves blue num of RGB for enemy spawn
+    public static int[][] getLevelDataBlue(String file) {
+        EncodedImage img = getSpriteAtlas(file);
+        int[][] levelData = new int[img.getHeight()] [img.getWidth()];
+
+        int[] rgbData = img.getRGB();   
     
-            for (int i = 0; i < img.getHeight(); i++) {
-                for (int j = 0; j < img.getWidth(); j++) {
-                    Color color = new Color(img.getRGB(j, i));
-                    int value = color.getBlue();
-                    if (value != 1) {
-                        value = 0;
-                    }
-                    levelData[i][j] = value;
+        for (int i = 0; i < img.getHeight(); i++) {
+            for (int j = 0; j < img.getWidth(); j++) {
+                int rgb = rgbData[i * img.getWidth() + j];
+                int blue = rgb & 0xFF;
+
+                int value = (blue != 1) ? 0 : blue;
+                levelData[i][j] = value;
                 }
             }
-            return levelData;
+        return levelData;
         }
     }

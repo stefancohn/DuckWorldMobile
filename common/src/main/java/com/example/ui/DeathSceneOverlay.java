@@ -1,9 +1,8 @@
 package com.example.ui;
 
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-
+import com.codename1.ui.EncodedImage;
+import com.codename1.ui.Font;
+import com.codename1.ui.Graphics;
 import com.example.handler.MouseHandler;
 import com.example.myapp.Game;
 import com.example.util.Constants;
@@ -12,7 +11,7 @@ import com.example.util.SaveScores;
 
 public class DeathSceneOverlay {
     MouseHandler mh;
-    BufferedImage[][] deathSceneButtons = new BufferedImage[2][2]; //holds sprites 
+    EncodedImage[][] deathSceneButtons = new EncodedImage[2][2]; //holds sprites 
 
     //button variables
     int buttonWidth = 275;
@@ -31,10 +30,10 @@ public class DeathSceneOverlay {
     }
 
     public void loadButtons() { //get button from image and place it into array
-        BufferedImage img = LoadSave.getSpriteAtlas("/res/deathScreenButtons.png");
+        EncodedImage img = LoadSave.getSpriteAtlas("/res/deathScreenButtons.png");
         for (int i = 0; i < deathSceneButtons.length; i++) {
             for (int j = 0; j < deathSceneButtons[i].length; j++) {
-                deathSceneButtons[i][j] = img.getSubimage(j * 200, i * 50, 200, 50);
+                deathSceneButtons[i][j] = (EncodedImage) img.subImage(j * 200, i * 50, 200, 50, false);
             }
         }
     }
@@ -67,14 +66,16 @@ public class DeathSceneOverlay {
         Game.game.getVolumeButton().update();
     }
     public void draw(Graphics g) {
-        g.drawImage(deathSceneButtons[0][playAgainButtonSprite], buttonPlacementX, 300, buttonWidth, buttonHeight, null); //draw play again button
-        g.drawImage(deathSceneButtons[1][quitButtonSprite], buttonPlacementX + 10, 375, buttonWidth - 20, buttonHeight, null); //draw quit button
+        g.drawImage(deathSceneButtons[0][playAgainButtonSprite], buttonPlacementX, 300, buttonWidth, buttonHeight); //draw play again button
+        g.drawImage(deathSceneButtons[1][quitButtonSprite], buttonPlacementX + 10, 375, buttonWidth - 20, buttonHeight); //draw quit button
         Game.game.getVolumeButton().draw(g); //draw volume button
 
         //draw highscores
-        g.setFont(new Font("Comic Sans MS", Font.BOLD, 35));
+        Font defaultFont = Font.createSystemFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, Font.SIZE_MEDIUM);
+        //g.setFont(new Font("Comic Sans MS", Font.PLAIN, 35));
+        g.setFont(defaultFont);
         g.drawString("HIGHSCORES", 275, 120);
-        g.setFont(new Font("Comic Sans MS", Font.PLAIN, 25));
+        //g.setFont(new Font("Comic Sans MS", Font.PLAIN, 25));
         for (int i = 0; i < SaveScores.highscores.size(); i++) {
             g.drawString((i + 1) + ") " + SaveScores.highscores.get(i).toString(), 365, 150 + i * 30);
         }

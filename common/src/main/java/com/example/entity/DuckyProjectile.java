@@ -1,13 +1,11 @@
 package com.example.entity;
-
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-
+import com.codename1.ui.EncodedImage;
+import com.codename1.ui.Graphics;
 import com.example.util.Collisions;
 import com.example.util.LoadSave;
 
 public class DuckyProjectile extends Entity {
-    BufferedImage projectileImg; 
+    EncodedImage projectileImg; 
 
     int projectileSpeed = 4; 
 
@@ -26,7 +24,7 @@ public class DuckyProjectile extends Entity {
 
     private void loadProjectile() { //get spriteAtlas, get subimage
         projectileImg = LoadSave.getSpriteAtlas("/res/marshmallow.png");
-        projectileImg = projectileImg.getSubimage(0, 0, 16, 16);
+        projectileImg = (EncodedImage) projectileImg.subImage(0, 0, 16, 16, false);
     }
 
     public void constantMove() { //will keep going until there is a collision detected
@@ -45,7 +43,7 @@ public class DuckyProjectile extends Entity {
         constantMove();
     }
     public void draw(Graphics g) {
-        g.drawImage(projectileImg, hitbox.x, hitbox.y, width, height, null);
+        g.drawImage(projectileImg, hitbox.x, hitbox.y, width, height);
     }
     
 }

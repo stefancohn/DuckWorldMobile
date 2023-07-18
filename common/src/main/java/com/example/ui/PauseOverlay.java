@@ -1,8 +1,6 @@
 package com.example.ui;
-
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-
+import com.codename1.ui.EncodedImage;
+import com.codename1.ui.Graphics;
 import com.example.handler.MouseHandler;
 import com.example.myapp.Game;
 import com.example.statemanager.PlayingScene;
@@ -11,13 +9,13 @@ import com.example.util.LoadSave;
 
 public class PauseOverlay {
     MouseHandler mh;
-    BufferedImage pauseOverlay;
+    EncodedImage pauseOverlay;
 
     int xPlacementForOverlay;
     int yPlacementForOverlay;
 
     //buttons stuffs
-    BufferedImage[][] pauseButtons = new BufferedImage[2][2];
+    EncodedImage[][] pauseButtons = new EncodedImage[2][2];
     int xPlacementForButtons;
     int playButtonY = 150;
     int quitButtonY = 275;
@@ -41,10 +39,10 @@ public class PauseOverlay {
     public void initializePauseButtons() {
         xPlacementForButtons = xPlacementForOverlay + 25;
 
-        BufferedImage img = LoadSave.getSpriteAtlas("/res/pauseButtons.png");
+        EncodedImage img = LoadSave.getSpriteAtlas("/res/pauseButtons.png");
         for (int i = 0; i < pauseButtons.length; i++) {
             for (int j = 0; j < pauseButtons[i].length; j++) {
-                pauseButtons[i][j] = img.getSubimage(j * buttonWidth, i * buttonHeight, buttonWidth, buttonHeight);
+                pauseButtons[i][j] = (EncodedImage) img.subImage(j * buttonWidth, i * buttonHeight, buttonWidth, buttonHeight, false);
             }
         }
     }
@@ -78,8 +76,8 @@ public class PauseOverlay {
         mouseMovement();
     }
     public void draw(Graphics g) {
-        g.drawImage(pauseOverlay, xPlacementForOverlay, yPlacementForOverlay, 250, 450, null);
-        g.drawImage(pauseButtons[0][playButtonShown], xPlacementForButtons, playButtonY, null);
-        g.drawImage(pauseButtons[1][quitButtonShown], xPlacementForButtons, quitButtonY, null);
+        g.drawImage(pauseOverlay, xPlacementForOverlay, yPlacementForOverlay, 250, 450);
+        g.drawImage(pauseButtons[0][playButtonShown], xPlacementForButtons, playButtonY);
+        g.drawImage(pauseButtons[1][quitButtonShown], xPlacementForButtons, quitButtonY);
     }
 }

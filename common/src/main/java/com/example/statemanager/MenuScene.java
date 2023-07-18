@@ -1,9 +1,7 @@
 package com.example.statemanager;
-
-import java.awt.Font;
+import com.codename1.ui.EncodedImage;
+import com.codename1.ui.Font;
 import com.codename1.ui.Graphics;
-import java.awt.image.BufferedImage;
-
 import com.example.handler.MouseHandler;
 import com.example.myapp.Game;
 import com.example.util.Constants;
@@ -11,8 +9,8 @@ import com.example.util.LoadSave;
 
 public class MenuScene extends Scene{
     MouseHandler mh;
-    BufferedImage menuImage = LoadSave.getSpriteAtlas("/res/menuScreen.png");
-    BufferedImage[] playButton = new BufferedImage[2]; //array to hold playbutton 
+    EncodedImage menuImage = LoadSave.getSpriteAtlas("/res/menuScreen.png");
+    EncodedImage[] playButton = new EncodedImage[2]; //array to hold playbutton 
     int buttonSprite = 0; //which spirte to show
 
     public MenuScene(MouseHandler mh) {
@@ -21,9 +19,9 @@ public class MenuScene extends Scene{
     }
 
     public void initializePlayButton() {
-        BufferedImage img = LoadSave.getSpriteAtlas("/res/playButton.png");
+        EncodedImage img = LoadSave.getSpriteAtlas("/res/playButton.png");
         for (int i = 0; i < playButton.length; i++) {
-            playButton[i] = img.getSubimage(100 * i, 0, 100, 50);
+            playButton[i] = (EncodedImage) img.subImage(100 * i, 0, 100, 50, false);
         }
     }
 
@@ -48,10 +46,10 @@ public class MenuScene extends Scene{
     }
     @Override
     public void draw(Graphics g) {
-        g.drawImage(menuImage, 0, 0, null); //display start screen with play button
-        g.drawImage(playButton[buttonSprite], (Constants.GAME_WIDTH/2) - 200, 200, 400, 100, null);
-        
-        g.setFont(new Font("Comic Sans MS", Font.PLAIN, 0)); //get load font glitch to pass in beginning
+        g.drawImage(menuImage, 0, 0); //display start screen with play button
+        g.drawImage(playButton[buttonSprite], (Constants.GAME_WIDTH/2) - 200, 200, 400, 100);
+        Font defaultFont = Font.createSystemFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, Font.SIZE_MEDIUM);
+        g.setFont(defaultFont); //get load font glitch to pass in beginning
         g.drawString("", 0, 0);
 
         Game.game.getVolumeButton().draw(g); //draw volumebutton

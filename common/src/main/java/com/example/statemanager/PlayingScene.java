@@ -1,6 +1,5 @@
 package com.example.statemanager;
-import java.awt.Color;
-import java.awt.Font;
+import com.codename1.ui.Font;
 import com.codename1.ui.Graphics;
 import java.util.Random;
 import com.example.entity.Ducky;
@@ -101,16 +100,26 @@ public class PlayingScene extends Scene {
         enemyManager.draw(g); //draw enemies
 
         // draw game score
-        g.setFont(new Font("Comic Sans MS", Font.BOLD, 35));
-        g.setColor(Color.GREEN);
+        Font defaultFont = Font.createSystemFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, Font.SIZE_MEDIUM);
+        int red = 0;
+        int green = 225;
+        int blue = 0;
+        int RGB = (red << 16) | (green << 8) | blue;
+        g.setColor(RGB);
+        g.setFont(defaultFont);
         g.drawString("Score: " + (int)(PlayingScene.gameScore * 5), 600, 50); 
 
         if (duck.kh.getPause()) { //if paused draw pause over lay
             pauseScreen.draw(g); 
             Game.game.getVolumeButton().draw(g);
         } if (PlayingScene.unpaused) { //once unpaused, give a countdown till game starts again
-            g.setFont(new Font("Comic Sans MS", Font.BOLD, 50));
-            g.setColor(Color.WHITE);
+            //g.setFont(new Font("Comic Sans MS", Font.BOLD, 50));
+            //g.setColor(Color.WHITE);
+            red = 225;
+            green = 225;
+            blue = 225;
+            RGB = (red << 16) | (green << 8) | blue;
+            g.setColor(RGB);
             if (unpauseCounter < 360) {
                 g.drawString("" + displayedCountdown, 50, 50);
             }

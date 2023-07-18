@@ -1,10 +1,8 @@
 package com.example.myapp;
 
-import com.codename1.ui.Component;
 import com.codename1.ui.Container;
 import com.codename1.ui.Graphics;
 import com.codename1.ui.layouts.BorderLayout;
-import com.codename1.ui.layouts.Layout;
 import com.example.handler.KeyHandler;
 import com.example.handler.MouseHandler;
 

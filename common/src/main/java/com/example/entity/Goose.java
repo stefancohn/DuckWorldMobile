@@ -1,13 +1,12 @@
 package com.example.entity;
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-
+import com.codename1.ui.EncodedImage;
+import com.codename1.ui.Graphics;
 import com.example.util.Collisions;
 import com.example.util.Constants;
 import com.example.util.LoadSave;
 
 public class Goose extends Entity {
-    BufferedImage[][] gooseImages = new BufferedImage[2][1];
+    EncodedImage[][] gooseImages = new EncodedImage[2][1];
 
     int[][] levelData;
 
@@ -31,11 +30,11 @@ public class Goose extends Entity {
         initializeGoose();
     }
 
-    private void initializeGoose() { //put images of goose into bufferedimage array
-        BufferedImage img = LoadSave.getSpriteAtlas("/res/Goose.png");
+    private void initializeGoose() { //put images of goose into EncodedImage array
+        EncodedImage img = LoadSave.getSpriteAtlas("/res/Goose.png");
         for (int i = 0; i < gooseImages.length; i++) {
             for (int j = 0; j < gooseImages[i].length; j++) {
-                gooseImages[i][j] = img.getSubimage(j * 16, i * 16, 16, 16);
+                gooseImages[i][j] = (EncodedImage) img.subImage(j * 16, i * 16, 16, 16, false);
             }
         }
     }
@@ -114,7 +113,7 @@ public class Goose extends Entity {
         setAni();
     }
     public void draw(Graphics g) {
-        g.drawImage(gooseImages[spriteRow][0], hitbox.x, hitbox.y, width, height, null);
+        g.drawImage(gooseImages[spriteRow][0], hitbox.x, hitbox.y, width, height);
         //drawHitbox(g);
     }
 }

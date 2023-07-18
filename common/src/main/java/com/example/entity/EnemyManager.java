@@ -1,8 +1,8 @@
 package com.example.entity;
-
-import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Random;
+
+import com.codename1.ui.Graphics;
 import com.example.audio.AudioPlayer;
 import com.example.levels.LevelManager;
 import com.example.myapp.Game;

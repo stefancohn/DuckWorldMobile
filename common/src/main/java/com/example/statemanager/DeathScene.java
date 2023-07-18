@@ -1,6 +1,6 @@
 package com.example.statemanager;
+import com.codename1.ui.EncodedImage;
 import com.codename1.ui.Graphics;
-import java.awt.image.BufferedImage;
 
 import com.example.handler.MouseHandler;
 import com.example.ui.DeathSceneOverlay;
@@ -10,7 +10,7 @@ public class DeathScene extends Scene {
     MouseHandler mh;
     DeathSceneOverlay overlay;
 
-    BufferedImage background = LoadSave.getSpriteAtlas("/res/backgroundDeath.png");
+    EncodedImage background = LoadSave.getSpriteAtlas("/res/backgroundDeath.png");
 
     public DeathScene(MouseHandler mh) {
         this.mh = mh;
@@ -23,7 +23,7 @@ public class DeathScene extends Scene {
     }
     @Override
     public void draw(Graphics g) {
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
         overlay.draw(g);
     }
 }
