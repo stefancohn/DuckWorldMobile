@@ -18,10 +18,10 @@ public class Game implements Runnable {
 
     // ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource("res/duckIcon.png")); //for image icon
 
-    Ducky duck = new Ducky(panel.kh, 100, 200, 40, 40);
+    Ducky duck = new Ducky( 100, 200, 40, 40);
 
     Scene currentScene;
-    int sceneNum = Constants.SCENE_MENU; //controls which scene we are on
+    public int sceneNum = Constants.SCENE_MENU; //controls which scene we are on
     
     public AudioPlayer audioPlayer = new AudioPlayer(); //audio player 
     public VolumeButton volumeButton = new VolumeButton(panel.mh);
@@ -33,7 +33,7 @@ public class Game implements Runnable {
        // frame.add(panel);
         //frame.pack();
         //frame.setIconImage(logo.getImage());
-        frame.setVisible(true);
+       // frame.setVisible(true);
     }
     //singleton game panel
     public static Game getGame() {
@@ -53,6 +53,9 @@ public class Game implements Runnable {
     }
     public VolumeButton getVolumeButton() {
         return this.volumeButton;
+    }
+    public GameForm getGameForm() {
+        return this.frame;
     }
 
     //start game
@@ -115,10 +118,6 @@ public class Game implements Runnable {
     //all rendering and updating stems from here 
     public void update() {
         currentScene.update();
-        i++;
-        if (i == 100) {
-            changeState(1);
-        }
     }
     public void draw(Graphics g) {
         currentScene.draw(g);

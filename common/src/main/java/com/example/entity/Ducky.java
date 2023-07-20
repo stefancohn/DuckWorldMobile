@@ -29,7 +29,7 @@ import com.example.util.SaveScores;
         Boolean attackingSound = false; //for tracking attacking sound
         public Boolean isDead = false; //for tracking death animation properly
 
-        public KeyHandler kh = new KeyHandler();
+        public static KeyHandler kh = new KeyHandler();
 
         //gravity and friction variables
         Boolean jump = false;
@@ -42,9 +42,8 @@ import com.example.util.SaveScores;
         
         int[][] levelData; //recieves levelData from PlayingScene's levelManager
 
-        public Ducky(KeyHandler kh, int x, int y, int width, int height) {
+        public Ducky(int x, int y, int width, int height) {
             super(x, y, width, height);
-            this.kh = kh;
             initializeHitbox(x, y, width, height - 2);
             duckSprite = LoadSave.getSpriteAtlas(LoadSave.DUCKY_ATLAS);
             loadAni();
@@ -302,15 +301,16 @@ import com.example.util.SaveScores;
         }
         public void draw(Graphics g) {
             if (direction == "right" || direction == "attackingRight") {
-                g.drawImage(duckAni[spriteRow][spriteLoop], hitbox.x - 10, hitbox.y, width, height);
+                g.drawImage(duckAni[spriteRow][spriteLoop], (int) (Constants.WIDTH_SCALE * (hitbox.x - 10)),(int) (Constants.HEIGHT_SCALE * hitbox.y), (int) (width * Constants.WIDTH_SCALE), (int) (height * Constants.HEIGHT_SCALE));
                 //drawHitbox(g);
             } else if (direction == "left" || direction == "attackingLeft") {
-                g.drawImage(duckAni[spriteRow][spriteLoop], hitbox.x - 8, hitbox.y, width, height);
+                g.drawImage(duckAni[spriteRow][spriteLoop], (int) (Constants.WIDTH_SCALE * (hitbox.x - 8)), (int) (hitbox.y * Constants.HEIGHT_SCALE), (int) (width * Constants.WIDTH_SCALE), (int) (height * Constants.HEIGHT_SCALE));
                 //drawHitbox(g);
             } else {
-                g.drawImage(duckAni[spriteRow][spriteLoop], hitbox.x, hitbox.y, width, height);
+                g.drawImage(duckAni[spriteRow][spriteLoop], (int) (hitbox.x * Constants.WIDTH_SCALE), (int) (hitbox.y * Constants.HEIGHT_SCALE), (int) (width * Constants.WIDTH_SCALE), (int) (height * Constants.HEIGHT_SCALE));
                 //drawHitbox(g);
             }
+            kh.draw(g);
         }
 
         public void resetDir() { //for lost focus glitch

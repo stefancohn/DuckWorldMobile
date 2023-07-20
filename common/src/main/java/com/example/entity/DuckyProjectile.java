@@ -3,6 +3,7 @@ import com.codename1.io.FileSystemStorage;
 import com.codename1.ui.Image;
 import com.codename1.ui.Graphics;
 import com.example.util.Collisions;
+import com.example.util.Constants;
 import com.example.util.LoadSave;
 
 public class DuckyProjectile extends Entity {
@@ -44,7 +45,8 @@ public class DuckyProjectile extends Entity {
         constantMove();
     }
     public void draw(Graphics g) {
-        g.drawImage(projectileImg, hitbox.x, hitbox.y, width, height);
+        g.drawImage(projectileImg, (int) (hitbox.x * Constants.WIDTH_SCALE), (int) (hitbox.y * Constants.HEIGHT_SCALE), 
+        (int) (width * Constants.DEVICE_WIDTH), (int) (height * Constants.DEVICE_HEIGHT));
     }
     
 }

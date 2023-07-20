@@ -1,11 +1,15 @@
 package com.example.util;
 
+import com.codename1.ui.Display;
+
 public class Constants {
     //values to be used across whole game
     public static final int SCREEN_WIDTH = 1000;
     public static final int SCREEN_HEIGHT = 750;
     public static final int FPS = 120;
     public static final int UPS = 120;
+    public static final int DEVICE_WIDTH =  Display.getInstance().getDisplayWidth();
+    public static final int DEVICE_HEIGHT = Display.getInstance().getDisplayHeight();
 
     public static final int TILES_SIZE_DEF = 16;
     public static final float SCALE = 1.0f;
@@ -15,6 +19,8 @@ public class Constants {
     //800 x 480
     public static final int GAME_WIDTH = TILES_SIZE * TILES_IN_WIDTH;
     public static final int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT;
+    public static final float WIDTH_SCALE = (float) DEVICE_WIDTH / (float) GAME_WIDTH;
+    public static final float HEIGHT_SCALE = (float) DEVICE_HEIGHT / (float) GAME_HEIGHT;
 
     public static final int GRAVITY = 3;
     public static final int DUCKY_SPEED = 2; 

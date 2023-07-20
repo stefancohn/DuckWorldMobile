@@ -13,6 +13,8 @@ public class LevelManager {
     Level mainLevel;
     Level[] obstacleSequences = new Level[Constants.AMOUNT_OF_PATTERNS];
 
+    float widthOfBlocks = 1 * Constants.TILES_SIZE_DEF * Constants.WIDTH_SCALE;
+
     public LevelManager(){
         importLevelSprite();
         //initializes new level by using LoadSave getRed method to grab level
@@ -33,7 +35,7 @@ public class LevelManager {
     public void importObstacleSequences() {
         Image img = LoadSave.getSpriteAtlas(LoadSave.OBSTACLE_SEQUENCES); //loads gimp file into bufferedimg
         for (int j = 0; j < (img.getWidth()/Constants.TILES_IN_WIDTH); j++) {
-            obstacleSprites[j] = (Image) img.subImage(j * 50, 0, 50, 30, false); //fills in array of bufferedimg with subimages of obstacle sequences
+            obstacleSprites[j] = img.subImage(j * 50, 0, 50, 30, false); //fills in array of bufferedimg with subimages of obstacle sequences
         }
         for (int i = 0; i < obstacleSprites.length; i ++) {
             obstacleSequences[i] = new Level(LoadSave.getLevelDataRedImg(obstacleSprites[i])); //retrieves leveldata RGB
@@ -58,15 +60,23 @@ public class LevelManager {
     public void update() {
     }
     public void draw(Graphics g) {
-        g.drawImage(background, 0, 0);
+        g.drawImage(background, 0, 0, Constants.DEVICE_WIDTH, Constants.DEVICE_HEIGHT);
         for (int i = 0; i < Constants.TILES_IN_HEIGHT; i++) 
             for (int j = 0; j < Constants.TILES_IN_WIDTH; j++) {
                 int index = mainLevel.getSpriteIndex(i, j);
                 if (index != 4) {
-                //these are drawn to size because the level builder sprites are 16*16, no size def needed
+                //scaled for mobile screen
                 //does not draw any black squares in the case that a background is to be drawn
-                    g.drawImage(levelSprite[index], j * Constants.TILES_SIZE_DEF, i * Constants.TILES_SIZE_DEF, 16, 16);
+                    g.drawImage(levelSprite[index],(int) (j * widthOfBlocks), 
+                    (int) (i * Constants.TILES_SIZE_DEF * Constants.HEIGHT_SCALE), (int) (widthOfBlocks), 
+                    (int) (Constants.TILES_SIZE_DEF * Constants.HEIGHT_SCALE));
+                    System.out.println((j * Constants.TILES_SIZE_DEF * Constants.WIDTH_SCALE));
+                    System.out.println((int)(j * Constants.TILES_SIZE_DEF * Constants.WIDTH_SCALE));
                 }
         }
+        //2959 = last block drawn
+        //2960 = device width
+        //ducky x = 370
+        // 532.8 and 592, between 9 and 10, 59 widthOfBlocks
     }
 }

@@ -13,6 +13,12 @@ public class MenuScene extends Scene{
     Image menuImage = LoadSave.getSpriteAtlas(FileSystemStorage.getInstance().getAppHomePath() + "res/menuScreen.png");
     Image[] playButton = new Image[2]; //array to hold playbutton 
     int buttonSprite = 0; //which spirte to show
+    
+    //play button things
+    public static int playButtonWidth = (int) (400 * Constants.WIDTH_SCALE);
+    public static int playButtonHeight = (int)(100*Constants.HEIGHT_SCALE);
+    public static int playButtonX = (int) (((Constants.DEVICE_WIDTH)/2) - (200 * Constants.WIDTH_SCALE));
+    public static int playButtonY =  (int) (((Constants.DEVICE_HEIGHT/2)) - (50 * Constants.HEIGHT_SCALE));
 
     public MenuScene(MouseHandler mh) {
         this.mh = mh;
@@ -26,29 +32,24 @@ public class MenuScene extends Scene{
         }
     }
 
-    public void mouseMovement() {
+    public static void touchMovement(int x, int y) {
         //track if mouse is in bounds of play button
-        if (mh.x > (Constants.GAME_WIDTH/2) - 200 && 
-        mh.x < (((Constants.GAME_WIDTH/2) - 200) + 400) && mh.y > 200
-        && mh.y < 300) {
-            buttonSprite = 1; //change button to "selected" if it is in bounds
-            if (mh.clicked) {
-                Game.game.changeState(Constants.SCENE_PLAYING); //change scene if play button clicked
-            }
+        if (x > playButtonX && x < playButtonX + playButtonWidth && y > playButtonY && y < playButtonY + playButtonHeight) {
+            Game.game.changeState(Constants.SCENE_PLAYING); //change scene if play button clicked
+            Game.game.sceneNum = 1;
         } else {
-            buttonSprite = 0; //otherwise, it will stay the default button 
+            //buttonSprite = 0; //otherwise, it will stay the default button 
         }
     }
 
     @Override
     public void update() {
-        mouseMovement();
         Game.game.getVolumeButton().update();
     }
     @Override
     public void draw(Graphics g) {
-        g.drawImage(menuImage, 0, 0); //display start screen with play button
-        g.drawImage(playButton[buttonSprite], (Constants.GAME_WIDTH/2) - 200, 200, 400, 100);
+        g.drawImage(menuImage, 0, 0, (int) (Constants.GAME_WIDTH * Constants.WIDTH_SCALE + 100), (int) (Constants.GAME_HEIGHT * Constants.HEIGHT_SCALE + 100)); //display start screen with play button
+        g.drawImage(playButton[buttonSprite], playButtonX, playButtonY, playButtonWidth, playButtonHeight);
         Font defaultFont = Font.createSystemFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, Font.SIZE_MEDIUM);
         g.setFont(defaultFont); //get load font glitch to pass in beginning
         g.drawString("", 0, 0);

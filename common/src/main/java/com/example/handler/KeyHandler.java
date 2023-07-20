@@ -1,8 +1,11 @@
 package com.example.handler;
 
+import com.codename1.ui.Graphics;
 import com.example.statemanager.PlayingScene;
+import com.example.ui.ArrowButtons;
 
 public class KeyHandler {
+    //direction booleans
     public Boolean upPressed = false;
     public Boolean downPressed = false;
     public Boolean leftPressed = false;
@@ -11,18 +14,15 @@ public class KeyHandler {
     public Boolean pause = false;
     public String direction = "";
 
-    /*@Override
-    public void keyTyped(KeyEvent e) {
-    }
+    public ArrowButtons arrowButtons = new ArrowButtons(); 
 
-    @Override
-    public void keyPressed(KeyEvent e) {
-        int i = e.getKeyCode();
-        if (i == KeyEvent.VK_W) {
+    public void touchMovement(int x, int y) {
+        if (x > arrowButtons.xPos && x < arrowButtons.xPos + arrowButtons.width && y > arrowButtons.yPos && y < arrowButtons.yPos + arrowButtons.height) {
             upPressed = true;
             direction = "up";
         }
-        if (i == KeyEvent.VK_S) {
+    }
+        /*if (i == KeyEvent.VK_S) {
             downPressed = true;
             direction = "down";
         }
@@ -44,15 +44,14 @@ public class KeyHandler {
             pause = !pause; 
         }
         }
-    }
+    } 
 
-    @Override
-    public void keyReleased(KeyEvent e) {
-        int i = e.getKeyCode();
-        if (i == KeyEvent.VK_W) {
+    */
+    public void keyReleased(int x, int y) {
+        if (x > arrowButtons.xPos && x < arrowButtons.xPos + arrowButtons.width && y > arrowButtons.yPos && y < arrowButtons.yPos + arrowButtons.height) {
             //upPressed = false;
             direction = "";
-        }
+        } }/* 
         if (i == KeyEvent.VK_S) {
             downPressed = false;
             direction = "";
@@ -72,4 +71,8 @@ public class KeyHandler {
     public Boolean getLeftPres() { return leftPressed; }
     public Boolean getSpacePres() {return spacePressed; }
     public Boolean getPause() {return pause;}
+
+    public void draw(Graphics g) {
+        arrowButtons.draw(g);
+    }
 }
