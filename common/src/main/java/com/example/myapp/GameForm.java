@@ -5,6 +5,7 @@ import com.codename1.ui.layouts.BorderLayout;
 import com.example.entity.Ducky;
 import com.example.handler.KeyHandler;
 import com.example.statemanager.MenuScene;
+import com.example.statemanager.PlayingScene;
 import com.example.util.Constants;
 
 public class GameForm extends Form { //JPanel equivelant
@@ -23,15 +24,18 @@ public class GameForm extends Form { //JPanel equivelant
     public void pointerPressed(int x, int y) {
         if (Game.game.sceneNum == Constants.SCENE_MENU) {
             MenuScene.touchMovement(x, y);
-        } else if (Game.game.sceneNum == Constants.SCENE_PLAYING) { //IMPLEMENT IN SOME WAY && !Ducky.kh.getPause
+        } else if (Game.game.sceneNum == Constants.SCENE_PLAYING && !Ducky.kh.getPause()) { //IMPLEMENT IN SOME WAY && !Ducky.kh.getPause
             kh.touchMovement(x, y);
+        } else if (Game.game.sceneNum == Constants.SCENE_PLAYING && Ducky.kh.getPause()) {
+            PlayingScene.pauseScreen.touchMovement(x, y);
         }
     }
 
-    @Override
     public void pointerReleased(int x, int y) {
-        if (Game.game.sceneNum == Constants.SCENE_PLAYING) {
+        if (Game.game.sceneNum == Constants.SCENE_PLAYING  && !Ducky.kh.getPause()) {
             kh.keyReleased(x, y);
+        } else if (Game.game.sceneNum == Constants.SCENE_PLAYING && Ducky.kh.getPause()) {
+            PlayingScene.pauseScreen.touchReleased(x, y);
         }
     }
 }

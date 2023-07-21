@@ -53,6 +53,8 @@ import com.example.util.SaveScores;
             hitbox.x = 100;
             hitbox.y = 200;
             PlayingScene.gameScore = 0;
+            kh.pause = false;
+            PlayingScene.unpaused = false;
         }
 
         public void initiateLevelData(int[][] levelData) {

@@ -2,9 +2,11 @@ package com.example.ui;
 import com.codename1.io.FileSystemStorage;
 import com.codename1.ui.Image;
 import com.codename1.ui.Graphics;
+import com.example.entity.Ducky;
 import com.example.handler.MouseHandler;
 import com.example.myapp.Game;
 import com.example.statemanager.PlayingScene;
+import com.example.util.Bounds;
 import com.example.util.Constants;
 import com.example.util.LoadSave;
 
@@ -27,8 +29,7 @@ public class PauseOverlay {
     int playButtonShown = 0;
     int quitButtonShown = 0;
 
-    public PauseOverlay(MouseHandler mh) {
-        this.mh = mh;
+    public PauseOverlay() {
         initialzePauseOverlay();
         initializePauseButtons();
     }
@@ -46,34 +47,32 @@ public class PauseOverlay {
         }
     }
 
-    public void mouseMovement() {
+    public void touchMovement(int x, int y) {
         //resume button function and bounds
-        if (mh.x > xPlacementForButtons && mh.x < xPlacementForButtons + buttonWidth
-        && mh.y > playButtonY && mh.y < playButtonY + buttonHeight) {
+        if (Bounds.checkBounds(x, y, xPlacementForButtons, playButtonY, buttonWidth, buttonHeight)) {
             playButtonShown = 1;
-            if (mh.clicked) {
-                Game.getGame().getPanel().kh.pause = false;
-                PlayingScene.unpaused = true;
-            }
-        } else {
+        }
+        //quit button function and bounds
+        if (Bounds.checkBounds(x, y, xPlacementForButtons, quitButtonY, buttonWidth, buttonHeight)) {
+            quitButtonShown = 1;
+        }
+    }
+    public void touchReleased(int x, int y) {
+        if (Bounds.checkBounds(x, y, xPlacementForButtons, playButtonY, buttonWidth, buttonHeight)) {
+            Ducky.kh.pause = false;
+            PlayingScene.unpaused = true;
             playButtonShown = 0;
         }
-
-        //quit button function and bounds
-        if (mh.x > xPlacementForButtons && mh.x < xPlacementForButtons + buttonWidth
-        && mh.y > quitButtonY && mh.y < quitButtonY + buttonHeight) {
-            quitButtonShown = 1;
-            if (mh.clicked) {
-                System.exit(0);
-            }
-        } else {
+        if (Bounds.checkBounds(x, y, xPlacementForButtons, quitButtonY, buttonWidth, buttonHeight)) {
+            Game.game.getDucky().defaultDucky();
+            Game.game.changeState(Constants.SCENE_MENU);
             quitButtonShown = 0;
+        }
+        if (Bounds.checkBounds(x, y, Ducky.kh.arrowButtons.pauseButtonX, Ducky.kh.arrowButtons.pauseButtonY, Ducky.kh.arrowButtons.arrowWidth, Ducky.kh.arrowButtons.arrowHeight)) {
+            Ducky.kh.arrowButtons.pauseButtonSprite = 0;
         }
     }
 
-    public void update() {
-        mouseMovement();
-    }
     public void draw(Graphics g) {
         g.drawImage(pauseOverlay, xPlacementForOverlay, yPlacementForOverlay, overlayWidth, overlayHeight);
         g.drawImage(pauseButtons[0][playButtonShown], xPlacementForButtons, playButtonY, buttonWidth, buttonHeight);

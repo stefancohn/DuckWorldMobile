@@ -21,12 +21,15 @@ public class KeyHandler {
         if (Bounds.checkBounds(x, y, arrowButtons.upArrowX, arrowButtons.yPos, arrowButtons.arrowWidth, arrowButtons.arrowHeight)) {
             upPressed = true;
             direction = "up";
+            arrowButtons.arrowSprite = 2;
         } 
         if (Bounds.checkBounds(x, y, arrowButtons.xPos, arrowButtons.sideArrowY, arrowButtons.arrowWidth, arrowButtons.arrowHeight)) { 
             leftPressed = true;
+            arrowButtons.arrowSprite = 1;
          } 
         if (Bounds.checkBounds(x, y, arrowButtons.rightArrowX, arrowButtons.sideArrowY, arrowButtons.arrowWidth, arrowButtons.arrowHeight)) {
             rightPressed = true;
+            arrowButtons.arrowSprite = 3;
         }  
         if (Bounds.checkBounds(x, y, arrowButtons.shootButtonX, arrowButtons.shootButtonY, arrowButtons.arrowWidth, arrowButtons.arrowHeight)) {
             spacePressed = true;
@@ -49,20 +52,20 @@ public class KeyHandler {
         if (Bounds.checkBounds(x, y, arrowButtons.upArrowX, arrowButtons.yPos, arrowButtons.arrowWidth, arrowButtons.arrowHeight)) {
             //upPressed = false;
             direction = "";
+            arrowButtons.arrowSprite = 0;
         } 
         if (Bounds.checkBounds(x, y, arrowButtons.rightArrowX, arrowButtons.sideArrowY, arrowButtons.arrowWidth, arrowButtons.arrowHeight)) {
             rightPressed = false;
             direction = "";
+            arrowButtons.arrowSprite = 0;
         }
         if (Bounds.checkBounds(x, y, arrowButtons.xPos, arrowButtons.sideArrowY, arrowButtons.arrowWidth, arrowButtons.arrowHeight)) { 
             leftPressed = false;
             direction = "";
+            arrowButtons.arrowSprite = 0;
         }
         if (Bounds.checkBounds(x, y, arrowButtons.shootButtonX, arrowButtons.shootButtonY, arrowButtons.arrowWidth, arrowButtons.arrowHeight)) {
             arrowButtons.shootButtonSprite = 0; 
-        }
-        if (Bounds.checkBounds(x, y, arrowButtons.pauseButtonX, arrowButtons.pauseButtonY, arrowButtons.arrowWidth, arrowButtons.arrowHeight)) {
-            arrowButtons.pauseButtonSprite = 0;
         }
     } 
     public Boolean getUpPres() { return upPressed; }

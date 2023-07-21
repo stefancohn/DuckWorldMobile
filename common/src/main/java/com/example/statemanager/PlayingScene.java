@@ -25,7 +25,7 @@ public class PlayingScene extends Scene {
     int pattern = patternChooser.nextInt(Constants.AMOUNT_OF_PATTERNS);
     
     //variables for pause overlay 
-    PauseOverlay pauseScreen = new PauseOverlay(Game.game.getPanel().getMouseHandler());
+    public static PauseOverlay pauseScreen = new PauseOverlay();
     public static Boolean unpaused = false;
     int unpauseCounter = 0;
     int displayedCountdown = 3;
@@ -89,7 +89,6 @@ public class PlayingScene extends Scene {
             enemyManager.update();
             constantScreenMove();
         } else if (Ducky.kh.getPause()) { //when paused, put up the pause overlay and vol button
-            pauseScreen.update();
             Game.game.getVolumeButton().update();
         }
     }
@@ -97,7 +96,6 @@ public class PlayingScene extends Scene {
     public void draw(Graphics g) {
         levelManager.draw(g); //draw level
         duck.draw(g); //draw ducky
-        Ducky.kh.draw(g); //draw ui
         enemyManager.draw(g); //draw enemies
 
         // draw game score
@@ -124,6 +122,8 @@ public class PlayingScene extends Scene {
             if (unpauseCounter < 360) {
                 g.drawString("" + displayedCountdown, 50, 50);
             }
+        } if (!Ducky.kh.getPause()) { //draw playingUI if not paused
+            Ducky.kh.draw(g);
         }
     }
     
