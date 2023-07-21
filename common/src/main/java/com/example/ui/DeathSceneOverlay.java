@@ -4,7 +4,6 @@ import com.codename1.io.FileSystemStorage;
 import com.codename1.ui.Image;
 import com.codename1.ui.Font;
 import com.codename1.ui.Graphics;
-import com.codename1.ui.Image;
 import com.example.handler.MouseHandler;
 import com.example.myapp.Game;
 import com.example.util.Constants;

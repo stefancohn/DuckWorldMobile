@@ -46,7 +46,7 @@ public class DuckyProjectile extends Entity {
     }
     public void draw(Graphics g) {
         g.drawImage(projectileImg, (int) (hitbox.x * Constants.WIDTH_SCALE), (int) (hitbox.y * Constants.HEIGHT_SCALE), 
-        (int) (width * Constants.DEVICE_WIDTH), (int) (height * Constants.DEVICE_HEIGHT));
+        (int) (width * Constants.WIDTH_SCALE), (int) (height * Constants.HEIGHT_SCALE));
     }
     
 }

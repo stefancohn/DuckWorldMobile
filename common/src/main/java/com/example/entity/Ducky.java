@@ -1,7 +1,6 @@
 package com.example.entity;
 import com.codename1.ui.Image;
 import com.codename1.ui.Graphics;
-import com.codename1.ui.Image;
 import com.example.handler.KeyHandler;
 import com.example.myapp.Game;
 import com.example.statemanager.PlayingScene;
@@ -310,7 +309,6 @@ import com.example.util.SaveScores;
                 g.drawImage(duckAni[spriteRow][spriteLoop], (int) (hitbox.x * Constants.WIDTH_SCALE), (int) (hitbox.y * Constants.HEIGHT_SCALE), (int) (width * Constants.WIDTH_SCALE), (int) (height * Constants.HEIGHT_SCALE));
                 //drawHitbox(g);
             }
-            kh.draw(g);
         }
 
         public void resetDir() { //for lost focus glitch

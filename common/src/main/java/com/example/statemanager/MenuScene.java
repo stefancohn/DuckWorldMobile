@@ -16,9 +16,9 @@ public class MenuScene extends Scene{
     
     //play button things
     public static int playButtonWidth = (int) (400 * Constants.WIDTH_SCALE);
-    public static int playButtonHeight = (int)(100*Constants.HEIGHT_SCALE);
-    public static int playButtonX = (int) (((Constants.DEVICE_WIDTH)/2) - (200 * Constants.WIDTH_SCALE));
-    public static int playButtonY =  (int) (((Constants.DEVICE_HEIGHT/2)) - (50 * Constants.HEIGHT_SCALE));
+    public static int playButtonHeight = (int)(100 * Constants.HEIGHT_SCALE);
+    public static int playButtonX = (int) (((Constants.DEVICE_WIDTH)/2) - (playButtonWidth/2));
+    public static int playButtonY =  (int) (((Constants.DEVICE_HEIGHT/2)) - (playButtonHeight/2));
 
     public MenuScene(MouseHandler mh) {
         this.mh = mh;

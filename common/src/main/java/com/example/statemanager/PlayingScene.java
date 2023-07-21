@@ -84,11 +84,11 @@ public class PlayingScene extends Scene {
         if (PlayingScene.unpaused) { //when unpaused, hit the timer
             unpauseTimer();
         }
-        else if (!duck.kh.getPause()) { //if not paused, update ducky, enemies, and the screen
+        else if (!Ducky.kh.getPause()) { //if not paused, update ducky, enemies, and the screen
             duck.update();
             enemyManager.update();
-            //constantScreenMove();
-        } else if (duck.kh.getPause()) { //when paused, put up the pause overlay and vol button
+            constantScreenMove();
+        } else if (Ducky.kh.getPause()) { //when paused, put up the pause overlay and vol button
             pauseScreen.update();
             Game.game.getVolumeButton().update();
         }
@@ -97,6 +97,7 @@ public class PlayingScene extends Scene {
     public void draw(Graphics g) {
         levelManager.draw(g); //draw level
         duck.draw(g); //draw ducky
+        Ducky.kh.draw(g); //draw ui
         enemyManager.draw(g); //draw enemies
 
         // draw game score
@@ -109,7 +110,7 @@ public class PlayingScene extends Scene {
         g.setFont(defaultFont);
         g.drawString("Score: " + (int)(PlayingScene.gameScore * 5), 600, 50); 
 
-        if (duck.kh.getPause()) { //if paused draw pause over lay
+        if (Ducky.kh.getPause()) { //if paused draw pause over lay
             pauseScreen.draw(g); 
             Game.game.getVolumeButton().draw(g);
         } if (PlayingScene.unpaused) { //once unpaused, give a countdown till game starts again

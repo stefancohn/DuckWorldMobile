@@ -13,7 +13,8 @@ public class LevelManager {
     Level mainLevel;
     Level[] obstacleSequences = new Level[Constants.AMOUNT_OF_PATTERNS];
 
-    float widthOfBlocks = 1 * Constants.TILES_SIZE_DEF * Constants.WIDTH_SCALE;
+    int widthOfBlocks = (int) (1 * Constants.TILES_SIZE_DEF * Constants.WIDTH_SCALE); 
+    int heightOfBlocks = (int) (1 * Constants.TILES_SIZE_DEF * Constants.HEIGHT_SCALE);
 
     public LevelManager(){
         importLevelSprite();
@@ -61,22 +62,22 @@ public class LevelManager {
     }
     public void draw(Graphics g) {
         g.drawImage(background, 0, 0, Constants.DEVICE_WIDTH, Constants.DEVICE_HEIGHT);
+        int z = 0;
         for (int i = 0; i < Constants.TILES_IN_HEIGHT; i++) 
             for (int j = 0; j < Constants.TILES_IN_WIDTH; j++) {
                 int index = mainLevel.getSpriteIndex(i, j);
                 if (index != 4) {
                 //scaled for mobile screen
                 //does not draw any black squares in the case that a background is to be drawn
-                    g.drawImage(levelSprite[index],(int) (j * widthOfBlocks), 
-                    (int) (i * Constants.TILES_SIZE_DEF * Constants.HEIGHT_SCALE), (int) (widthOfBlocks), 
-                    (int) (Constants.TILES_SIZE_DEF * Constants.HEIGHT_SCALE));
-                    System.out.println((j * Constants.TILES_SIZE_DEF * Constants.WIDTH_SCALE));
-                    System.out.println((int)(j * Constants.TILES_SIZE_DEF * Constants.WIDTH_SCALE));
+                    g.drawImage(levelSprite[index], j * widthOfBlocks, i * heightOfBlocks, widthOfBlocks, heightOfBlocks);
+                    if (j == 49) { //because we have to convert from float to int, we don't get exact calculations thus leaving
+                    //some white space after the last block, so to compensate, we draw one more "fake" column of blocks 
+                        g.drawImage(levelSprite[index], 50 * widthOfBlocks, i * heightOfBlocks, widthOfBlocks, heightOfBlocks);
+                    }
+                    if (i == 29) {//same ordeal here but for the last row 
+                        g.drawImage(levelSprite[index], j * widthOfBlocks, 30 * heightOfBlocks, widthOfBlocks, heightOfBlocks);
+                    } 
                 }
         }
-        //2959 = last block drawn
-        //2960 = device width
-        //ducky x = 370
-        // 532.8 and 592, between 9 and 10, 59 widthOfBlocks
     }
 }

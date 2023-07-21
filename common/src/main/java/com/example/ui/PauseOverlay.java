@@ -12,18 +12,20 @@ public class PauseOverlay {
     MouseHandler mh;
     Image pauseOverlay;
 
-    int xPlacementForOverlay;
-    int yPlacementForOverlay;
+    int overlayWidth = 650;
+    int overlayHeight = 850;
+    int xPlacementForOverlay = (Constants.DEVICE_WIDTH/2) - (overlayWidth/2);
+    int yPlacementForOverlay =  (Constants.DEVICE_HEIGHT/2) - (overlayHeight/2);
 
     //buttons stuffs
     Image[][] pauseButtons = new Image[2][2];
-    int xPlacementForButtons;
-    int playButtonY = 150;
-    int quitButtonY = 275;
+    int buttonWidth = 350;
+    int buttonHeight = 150;
+    int xPlacementForButtons = ((xPlacementForOverlay + overlayWidth) - (overlayWidth/2)) - (buttonWidth/2);
+    int playButtonY = yPlacementForOverlay + (int) (overlayHeight * .25);
+    int quitButtonY = yPlacementForOverlay + (int) (overlayHeight * .6);
     int playButtonShown = 0;
     int quitButtonShown = 0;
-    int buttonWidth = 200;
-    int buttonHeight = 50;
 
     public PauseOverlay(MouseHandler mh) {
         this.mh = mh;
@@ -33,17 +35,13 @@ public class PauseOverlay {
 
     public void initialzePauseOverlay() {
         pauseOverlay = LoadSave.getSpriteAtlas(FileSystemStorage.getInstance().getAppHomePath() + "res/pauseScreen.png");
-        xPlacementForOverlay = (Constants.GAME_WIDTH/2) - (pauseOverlay.getWidth()/2);
-        yPlacementForOverlay = (Constants.GAME_HEIGHT/2) - (pauseOverlay.getHeight()/2) - 20;
     }
 
     public void initializePauseButtons() {
-        xPlacementForButtons = xPlacementForOverlay + 25;
-
         Image img = LoadSave.getSpriteAtlas(FileSystemStorage.getInstance().getAppHomePath() + "res/pauseButtons.png");
         for (int i = 0; i < pauseButtons.length; i++) {
             for (int j = 0; j < pauseButtons[i].length; j++) {
-                pauseButtons[i][j] = img.subImage(j * buttonWidth, i * buttonHeight, buttonWidth, buttonHeight, false);
+                pauseButtons[i][j] = img.subImage(j * 200, i * 50, 200, 50, false);
             }
         }
     }
@@ -77,8 +75,8 @@ public class PauseOverlay {
         mouseMovement();
     }
     public void draw(Graphics g) {
-        g.drawImage(pauseOverlay, xPlacementForOverlay, yPlacementForOverlay, 250, 450);
-        g.drawImage(pauseButtons[0][playButtonShown], xPlacementForButtons, playButtonY);
-        g.drawImage(pauseButtons[1][quitButtonShown], xPlacementForButtons, quitButtonY);
+        g.drawImage(pauseOverlay, xPlacementForOverlay, yPlacementForOverlay, overlayWidth, overlayHeight);
+        g.drawImage(pauseButtons[0][playButtonShown], xPlacementForButtons, playButtonY, buttonWidth, buttonHeight);
+        g.drawImage(pauseButtons[1][quitButtonShown], xPlacementForButtons, quitButtonY, buttonWidth, buttonHeight);
     }
 }

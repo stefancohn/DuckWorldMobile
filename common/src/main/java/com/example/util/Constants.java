@@ -19,6 +19,8 @@ public class Constants {
     //800 x 480
     public static final int GAME_WIDTH = TILES_SIZE * TILES_IN_WIDTH;
     public static final int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT;
+    //because this game is very dependent on this 50*30 tile 16 pixel block structre, we scale all the images by enlarging all them
+    //by how much bigger the dimension are on mobile
     public static final float WIDTH_SCALE = (float) DEVICE_WIDTH / (float) GAME_WIDTH;
     public static final float HEIGHT_SCALE = (float) DEVICE_HEIGHT / (float) GAME_HEIGHT;
 
