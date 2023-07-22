@@ -3,7 +3,6 @@ import com.codename1.io.FileSystemStorage;
 import com.codename1.ui.Image;
 import com.codename1.ui.Graphics;
 import com.example.entity.Ducky;
-import com.example.handler.MouseHandler;
 import com.example.myapp.Game;
 import com.example.statemanager.PlayingScene;
 import com.example.util.Bounds;
@@ -11,7 +10,6 @@ import com.example.util.Constants;
 import com.example.util.LoadSave;
 
 public class PauseOverlay {
-    MouseHandler mh;
     Image pauseOverlay;
 
     int overlayWidth = 650;

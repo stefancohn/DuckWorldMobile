@@ -62,7 +62,6 @@ public class LevelManager {
     }
     public void draw(Graphics g) {
         g.drawImage(background, 0, 0, Constants.DEVICE_WIDTH, Constants.DEVICE_HEIGHT);
-        int z = 0;
         for (int i = 0; i < Constants.TILES_IN_HEIGHT; i++) 
             for (int j = 0; j < Constants.TILES_IN_WIDTH; j++) {
                 int index = mainLevel.getSpriteIndex(i, j);

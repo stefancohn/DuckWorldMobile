@@ -16,7 +16,7 @@ public class PlayingScene extends Scene {
     LevelManager levelManager = new LevelManager();
     EnemyManager enemyManager = new EnemyManager(levelManager);
 
-    VolumeButton volumeButton = new VolumeButton(Game.game.getPanel().getMouseHandler());
+    VolumeButton volumeButton = new VolumeButton();
 
     //variables used for random generation of obstacles and screen move
     int timerForConstantScreenMoveMethod = 0;
@@ -37,7 +37,7 @@ public class PlayingScene extends Scene {
         duck.initiateLevelData(levelManager.getCurrentLevel().getLevelData());
     }
 
-    //implements the shiftLevelRight thingy to shift the level every 40 updates
+    //implements the shiftLevelRight thingy to shift the level every 50 updates
     public void constantScreenMove() { 
         timerForConstantScreenMoveMethod++;
         if ((int)PlayingScene.gameScore < 32) { //caps off screen move once difficulty hits 31
@@ -99,10 +99,10 @@ public class PlayingScene extends Scene {
         enemyManager.draw(g); //draw enemies
 
         // draw game score
-        Font defaultFont = Font.createSystemFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, Font.SIZE_MEDIUM);
-        int red = 0;
-        int green = 225;
-        int blue = 0;
+        Font defaultFont = Font.createSystemFont(Font.FACE_MONOSPACE, Font.STYLE_PLAIN, Font.SIZE_LARGE);
+        int red =225;
+        int green = 248;
+        int blue = 220;
         int RGB = (red << 16) | (green << 8) | blue;
         g.setColor(RGB);
         g.setFont(defaultFont);

@@ -24,7 +24,7 @@ public class Game implements Runnable {
     public int sceneNum = Constants.SCENE_MENU; //controls which scene we are on
     
     public AudioPlayer audioPlayer = new AudioPlayer(); //audio player 
-    public VolumeButton volumeButton = new VolumeButton(panel.mh);
+    public VolumeButton volumeButton = new VolumeButton();
 
     public Game() {
         changeState(sceneNum);
@@ -70,7 +70,7 @@ public class Game implements Runnable {
     public void changeState(int sceneNum) {
         switch (sceneNum) {
             case Constants.SCENE_MENU: 
-                currentScene = new MenuScene(panel.mh);
+                currentScene = new MenuScene();
                 this.sceneNum = 0;
                 //audioPlayer.playSong(AudioPlayer.MENU_SONG);
                 break;
@@ -80,7 +80,7 @@ public class Game implements Runnable {
                 //audioPlayer.playSong(AudioPlayer.PLAYING_SONG);
                 break;
             case Constants.SCENE_DEATH: 
-                currentScene = new DeathScene(panel.mh);
+                currentScene = new DeathScene();
                 this.sceneNum = 2;
                 //audioPlayer.playSong(AudioPlayer.HIGHSCORE_SONG);
                 break;

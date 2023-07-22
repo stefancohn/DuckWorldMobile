@@ -4,11 +4,9 @@ import com.codename1.ui.Container;
 import com.codename1.ui.Graphics;
 import com.codename1.ui.layouts.BorderLayout;
 import com.example.handler.KeyHandler;
-import com.example.handler.MouseHandler;
 
 public class GameContainer extends Container { //JPanel equivalent
     public KeyHandler kh = new KeyHandler();
-    MouseHandler mh = new MouseHandler();
     private Game game;
 
     public GameContainer(Game game) {
@@ -28,10 +26,6 @@ public class GameContainer extends Container { //JPanel equivalent
 
     public Game getGame() {
         return game;
-    }
-
-    public MouseHandler getMouseHandler() {
-        return mh;
     }
 
     public KeyHandler getKeyHandler() {

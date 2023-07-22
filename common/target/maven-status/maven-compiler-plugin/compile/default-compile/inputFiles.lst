@@ -10,7 +10,6 @@
 /Users/mrducky/Documents/DuckWorldMobile/common/src/main/java/com/example/myapp/Game.java
 /Users/mrducky/Documents/DuckWorldMobile/common/src/main/java/com/example/ui/PauseOverlay.java
 /Users/mrducky/Documents/DuckWorldMobile/common/src/main/java/com/example/levels/Level.java
-/Users/mrducky/Documents/DuckWorldMobile/common/src/main/java/com/example/handler/MouseHandler.java
 /Users/mrducky/Documents/DuckWorldMobile/common/src/main/java/com/example/ui/DeathSceneOverlay.java
 /Users/mrducky/Documents/DuckWorldMobile/common/src/main/java/com/example/statemanager/DeathScene.java
 /Users/mrducky/Documents/DuckWorldMobile/common/src/main/java/com/example/statemanager/MenuScene.java
@@ -25,4 +24,5 @@
 /Users/mrducky/Documents/DuckWorldMobile/common/src/main/java/com/example/ui/playingUI.java
 /Users/mrducky/Documents/DuckWorldMobile/common/src/main/java/com/example/statemanager/Scene.java
 /Users/mrducky/Documents/DuckWorldMobile/common/src/main/java/com/example/entity/EnemyManager.java
+/Users/mrducky/Documents/DuckWorldMobile/common/src/main/java/com/example/ui/MenuSceneOverlay.java
 /Users/mrducky/Documents/DuckWorldMobile/common/src/main/java/com/example/statemanager/PlayingScene.java

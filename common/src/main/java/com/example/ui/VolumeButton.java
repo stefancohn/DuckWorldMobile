@@ -2,13 +2,10 @@ package com.example.ui;
 import com.codename1.io.FileSystemStorage;
 import com.codename1.ui.Image;
 import com.codename1.ui.Graphics;
-import com.example.handler.MouseHandler;
-import com.example.myapp.Game;
 import com.example.util.Constants;
 import com.example.util.LoadSave;
 
 public class VolumeButton {
-    MouseHandler mh;
     Boolean toggle = false;
     Boolean stopClick = true;
 
@@ -16,8 +13,7 @@ public class VolumeButton {
     int volumeHovered = 0; //update this int to display greyed out icon when hovered
     int volumeSprite = 0; //update this to show either the muted or default icon 
 
-    public VolumeButton(MouseHandler mh) {
-        this.mh = mh;
+    public VolumeButton() {
         loadButton();
     }
 
@@ -30,18 +26,8 @@ public class VolumeButton {
         }
     }
 
-    private void mouseMovement() { //track mousemovement to properly update volume icon and mute the game when selected
-        if (mh.x > 0 && mh.x < 50 && mh.y > Constants.GAME_HEIGHT - 50 && mh.y < Constants.GAME_HEIGHT) {
-            volumeHovered = 1;
-            if (mh.clicked && stopClick && !toggle) {
-                iconMuted();
-            } else if (mh.clicked && stopClick && toggle) {
-                iconUnmuted();
-            }
-        } else {
-            volumeHovered = 0;
-            stopClick = true;
-        }
+    private void touchMovement() { //track mousemovement to properly update volume icon and mute the game when selected
+        
     }
 
     private void iconMuted() {
@@ -58,7 +44,6 @@ public class VolumeButton {
     }
 
     public void update(){
-        mouseMovement();
     }
 
     public void draw(Graphics g){
