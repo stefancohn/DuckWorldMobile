@@ -12,9 +12,8 @@ public class AudioPlayer {
     public void playAudio(String fileName) {
         try {
             if (MEDIA == null) {
-                final InputStream is = Display.getInstance().getResourceAsStream(getClass(), "/" + fileName);
-                System.out.println(is);
-                MEDIA = MediaManager.createMedia(is, "audio/wav", new Runnable() {
+                InputStream is = FileSystemStorage.getInstance().openInputStream(fileName);
+                MEDIA = MediaManager.createMedia(is, "audio/mp3", new Runnable() {
                     @Override
                     public void run() {
                         MEDIA = null;
