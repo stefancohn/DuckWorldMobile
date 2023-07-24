@@ -29,7 +29,7 @@ public class Game implements Runnable {
 
     public Game() {
         changeState(sceneNum);
-        audioPlayer.playAudio("res/Sounds/fluffingADuck.wav");
+        audioPlayer.playAudio(FileSystemStorage.getInstance().getAppHomePath() + "res/Sounds/fluffingADuck.wav");
        // frame.add(panel);
         //frame.pack();
         //frame.setIconImage(logo.getImage());
