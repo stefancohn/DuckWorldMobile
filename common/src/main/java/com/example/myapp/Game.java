@@ -1,5 +1,6 @@
 package com.example.myapp;
 
+import com.codename1.io.FileSystemStorage;
 import com.codename1.ui.Graphics;
 import com.example.audio.AudioPlayer;
 import com.example.entity.Ducky;
@@ -28,6 +29,7 @@ public class Game implements Runnable {
 
     public Game() {
         changeState(sceneNum);
+        audioPlayer.playAudio("fluffingaDuck.wav");
        // frame.add(panel);
         //frame.pack();
         //frame.setIconImage(logo.getImage());
