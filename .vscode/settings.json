@@ -55,4 +55,6 @@
     "alias": "Local > Cross-platform (JavaSE) Desktop App",
     "command": "\"-Pexecutable-jar\" \"package\" \"-Dcodename1.platform=javase\" \"-DskipTests\" \"-U\" \"-e\""
   }
-]}
+],
+"java.configuration.updateBuildConfiguration": "interactive"
+}

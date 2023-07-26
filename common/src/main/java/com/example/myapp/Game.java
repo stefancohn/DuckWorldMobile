@@ -1,6 +1,4 @@
 package com.example.myapp;
-
-import com.codename1.io.FileSystemStorage;
 import com.codename1.ui.Graphics;
 import com.example.audio.AudioPlayer;
 import com.example.entity.Ducky;
@@ -24,12 +22,12 @@ public class Game implements Runnable {
     Scene currentScene;
     public int sceneNum = Constants.SCENE_MENU; //controls which scene we are on
     
-    public AudioPlayer audioPlayer = new AudioPlayer(); //audio player 
+    //public AudioPlayer audioPlayer = new AudioPlayer(); //audio player 
     public VolumeButton volumeButton = new VolumeButton();
 
     public Game() {
         changeState(sceneNum);
-        audioPlayer.playAudio(FileSystemStorage.getInstance().getAppHomePath() + "res/Sounds/fluffingADuck.wav");
+        //audioPlayer.playAudio("fluffingADuck.mp3");
        // frame.add(panel);
         //frame.pack();
         //frame.setIconImage(logo.getImage());
@@ -48,9 +46,9 @@ public class Game implements Runnable {
     public Ducky getDucky() {
         return this.duck;
     }
-    public AudioPlayer getAudioPlayer() {
+    /*public AudioPlayer getAudioPlayer() {
         return this.audioPlayer;
-    }
+    }*/
     public VolumeButton getVolumeButton() {
         return this.volumeButton;
     }

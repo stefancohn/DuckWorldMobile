@@ -1,6 +1,5 @@
 package com.example.statemanager;
 import com.codename1.ui.Image;
-import com.codename1.io.FileSystemStorage;
 import com.codename1.ui.Graphics;
 import com.example.ui.DeathSceneOverlay;
 import com.example.util.Constants;
@@ -9,7 +8,7 @@ import com.example.util.LoadSave;
 public class DeathScene extends Scene {
     public static DeathSceneOverlay deathOverlay;
 
-    Image background = LoadSave.getSpriteAtlas(FileSystemStorage.getInstance().getAppHomePath() + "res/backgroundDeath.png");
+    Image background = LoadSave.getSpriteAtlas("/backgroundDeath.png");
 
     public DeathScene() {
         deathOverlay = new DeathSceneOverlay();

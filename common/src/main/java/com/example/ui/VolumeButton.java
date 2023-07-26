@@ -18,7 +18,7 @@ public class VolumeButton {
     }
 
     private void loadButton() { //put buttons into array 
-        Image img = LoadSave.getSpriteAtlas(FileSystemStorage.getInstance().getAppHomePath() + "res/volumeToggle.png");
+        Image img = LoadSave.getSpriteAtlas("/volumeToggle.png");
         for (int i = 0; i < volumeButtons.length; i++) {
             for (int j = 0; j < volumeButtons[i].length; j++) {
                 volumeButtons[i][j] = (Image) img.subImage(j * 230, i * 170, 230, 170, false);

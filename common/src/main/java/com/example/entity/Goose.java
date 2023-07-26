@@ -1,6 +1,5 @@
 package com.example.entity;
 import com.codename1.ui.Image;
-import com.codename1.io.FileSystemStorage;
 import com.codename1.ui.Graphics;
 import com.example.util.Collisions;
 import com.example.util.Constants;
@@ -32,7 +31,7 @@ public class Goose extends Entity {
     }
 
     private void initializeGoose() { //put images of goose into Image array
-        Image img = LoadSave.getSpriteAtlas(FileSystemStorage.getInstance().getAppHomePath() + "res/Goose.png");
+        Image img = LoadSave.getSpriteAtlas("/Goose.png");
         for (int i = 0; i < gooseImages.length; i++) {
             for (int j = 0; j < gooseImages[i].length; j++) {
                 gooseImages[i][j] = (Image) img.subImage(j * 16, i * 16, 16, 16, false);

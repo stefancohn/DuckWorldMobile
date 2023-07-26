@@ -1,6 +1,4 @@
 package com.example.ui;
-
-import com.codename1.io.FileSystemStorage;
 import com.codename1.ui.Graphics;
 import com.codename1.ui.Image;
 import com.example.util.Constants;
@@ -46,19 +44,19 @@ public playingUI() {
 }
 
 private void loadArrowButton() {
-    Image img = LoadSave.getSpriteAtlas(FileSystemStorage.getInstance().getAppHomePath() + "res/arrowControl.png");
+    Image img = LoadSave.getSpriteAtlas("/arrowControl.png");
     for (int i = 0; i < arrows.length; i++) {
         arrows[i] = img.subImage(i * 32, 0, 32, 24, false);
     }
 }
 private void loadPauseButton() {
-    Image img = LoadSave.getSpriteAtlas(FileSystemStorage.getInstance().getAppHomePath() + "res/PauseButton.png");
+    Image img = LoadSave.getSpriteAtlas("/PauseButton.png");
     for (int i = 0; i < shootButton.length; i++) {
         pauseButton[i] = img.subImage(i * 20, 0, 20, 20, false);
     }
 }
 private void loadShootButton() {
-    Image img = LoadSave.getSpriteAtlas(FileSystemStorage.getInstance().getAppHomePath() + "res/ShootButton.png");
+    Image img = LoadSave.getSpriteAtlas("/ShootButton.png");
     for (int i = 0; i < shootButton.length; i++) {
         shootButton[i] = img.subImage(i * 20, 0, 20, 20, false);
     }

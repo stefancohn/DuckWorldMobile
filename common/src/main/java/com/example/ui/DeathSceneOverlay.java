@@ -1,6 +1,5 @@
 package com.example.ui;
 
-import com.codename1.io.FileSystemStorage;
 import com.codename1.ui.Image;
 import com.codename1.ui.Font;
 import com.codename1.ui.Graphics;
@@ -34,7 +33,7 @@ public class DeathSceneOverlay {
     }
 
     public void loadButtons() { //get button from image and place it into array
-        Image img = LoadSave.getSpriteAtlas(FileSystemStorage.getInstance().getAppHomePath() + "res/deathScreenButtons.png");
+        Image img = LoadSave.getSpriteAtlas("/deathScreenButtons.png");
         for (int i = 0; i < deathSceneButtons.length; i++) {
             for (int j = 0; j < deathSceneButtons[i].length; j++) {
                 deathSceneButtons[i][j] = (Image) img.subImage(j * 200, i * 50, 200, 50, false);

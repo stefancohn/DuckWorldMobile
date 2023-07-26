@@ -1,6 +1,4 @@
 package com.example.ui;
-
-import com.codename1.io.FileSystemStorage;
 import com.codename1.ui.Font;
 import com.codename1.ui.Graphics;
 import com.codename1.ui.Image;
@@ -10,7 +8,7 @@ import com.example.util.Constants;
 import com.example.util.LoadSave;
 
 public class MenuSceneOverlay {
-    Image menuImage = LoadSave.getSpriteAtlas(FileSystemStorage.getInstance().getAppHomePath() + "res/menuScreen.png");
+    Image menuImage = LoadSave.getSpriteAtlas("/menuScreen.png");
     Image[] playButton = new Image[2]; //array to hold playbutton 
     int buttonSprite = 0; //which spirte to show
     
@@ -25,7 +23,7 @@ public class MenuSceneOverlay {
     }
 
     public void initializePlayButton() {
-        Image img = LoadSave.getSpriteAtlas(FileSystemStorage.getInstance().getAppHomePath() + "res/playButton.png");
+        Image img = LoadSave.getSpriteAtlas("/playButton.png");
         for (int i = 0; i < playButton.length; i++) {
             playButton[i] = (Image) img.subImage(100 * i, 0, 100, 50, false);
         }

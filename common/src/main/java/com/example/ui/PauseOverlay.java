@@ -1,5 +1,4 @@
 package com.example.ui;
-import com.codename1.io.FileSystemStorage;
 import com.codename1.ui.Image;
 import com.codename1.ui.Graphics;
 import com.example.entity.Ducky;
@@ -33,11 +32,11 @@ public class PauseOverlay {
     }
 
     public void initialzePauseOverlay() {
-        pauseOverlay = LoadSave.getSpriteAtlas(FileSystemStorage.getInstance().getAppHomePath() + "res/pauseScreen.png");
+        pauseOverlay = LoadSave.getSpriteAtlas("/pauseScreen.png");
     }
 
     public void initializePauseButtons() {
-        Image img = LoadSave.getSpriteAtlas(FileSystemStorage.getInstance().getAppHomePath() + "res/pauseButtons.png");
+        Image img = LoadSave.getSpriteAtlas("/pauseButtons.png");
         for (int i = 0; i < pauseButtons.length; i++) {
             for (int j = 0; j < pauseButtons[i].length; j++) {
                 pauseButtons[i][j] = img.subImage(j * 200, i * 50, 200, 50, false);

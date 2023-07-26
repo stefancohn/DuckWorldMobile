@@ -8,7 +8,7 @@ import com.example.util.LoadSave;
 public class LevelManager {
     private Image[] levelSprite = new Image[6];  //holds all the blocks from sprite sheet to build level 
     private Image[] obstacleSprites = new Image[Constants.AMOUNT_OF_PATTERNS]; //holds all random level patterns 
-    private Image background = LoadSave.getSpriteAtlas(FileSystemStorage.getInstance().getAppHomePath() + "res/background.png");
+    private Image background = LoadSave.getSpriteAtlas("/background.png");
 
     Level mainLevel;
     Level[] obstacleSequences = new Level[Constants.AMOUNT_OF_PATTERNS];

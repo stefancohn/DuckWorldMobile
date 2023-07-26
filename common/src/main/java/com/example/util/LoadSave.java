@@ -1,21 +1,21 @@
 package com.example.util;
 import java.io.IOException;
 import java.io.InputStream;
-import com.codename1.io.FileSystemStorage;
+import com.codename1.ui.CN;
 import com.codename1.ui.Image;
 
 public class LoadSave {
-    public static final String DUCKY_ATLAS = FileSystemStorage.getInstance().getAppHomePath() + "res/duckySprite.png";
-    public static final String LEVEL_ATLAS = FileSystemStorage.getInstance().getAppHomePath() + "res/mapSprite.png";
+    public static final String DUCKY_ATLAS = "/duckySprite.png";
+    public static final String LEVEL_ATLAS = "/mapSprite.png";
 
-    public static final String START_LEVEL = FileSystemStorage.getInstance().getAppHomePath() + "res/levelOne.png";
-    public static final String OBSTACLE_SEQUENCES = FileSystemStorage.getInstance().getAppHomePath() + "res/levelSequences.png";
+    public static final String START_LEVEL = "/levelOne.png";
+    public static final String OBSTACLE_SEQUENCES = "/levelSequences.png";
 
     //method to pull Image from file 
     public static Image getSpriteAtlas(String file) {
         Image img = null;
         try {
-            InputStream is = FileSystemStorage.getInstance().openInputStream(file);
+            InputStream is = CN.getResourceAsStream(file);
             img = Image.createImage(is);
             is.close();
         } catch (IOException e) {

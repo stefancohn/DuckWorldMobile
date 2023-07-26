@@ -1,8 +1,6 @@
 package com.example.entity;
 import java.util.ArrayList;
 import java.util.Random;
-
-import com.codename1.io.FileSystemStorage;
 import com.codename1.ui.Graphics;
 import com.example.audio.AudioPlayer;
 import com.example.levels.LevelManager;
@@ -37,7 +35,7 @@ public class EnemyManager {
     }
 
     public void spawnGooseDefault() { //this method spawns the goose for the default levle that shows when the game starts
-        spawnPoints = LoadSave.getLevelDataBlue(FileSystemStorage.getInstance().getAppHomePath() + "res/levelOne.png");
+        spawnPoints = LoadSave.getLevelDataBlue("/levelOne.png");
         for (int i = 0; i < spawnPoints.length; i++) { 
             for (int j = 0; j < spawnPoints[i].length; j++) { //gets level data regarding blue squares, ones with value 1 spawn a goose
                 int value = spawnPoints[i][j];
