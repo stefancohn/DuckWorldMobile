@@ -22,12 +22,12 @@ public class Game implements Runnable {
     Scene currentScene;
     public int sceneNum = Constants.SCENE_MENU; //controls which scene we are on
     
-    //public AudioPlayer audioPlayer = new AudioPlayer(); //audio player 
+    public AudioPlayer audioPlayer = new AudioPlayer(); //audio player 
     public VolumeButton volumeButton = new VolumeButton();
 
     public Game() {
         changeState(sceneNum);
-        //audioPlayer.playAudio("fluffingADuck.mp3");
+        audioPlayer.playAudio("/fluffingADuck.wav");
        // frame.add(panel);
         //frame.pack();
         //frame.setIconImage(logo.getImage());

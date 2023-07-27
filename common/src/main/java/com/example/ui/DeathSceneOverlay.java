@@ -70,7 +70,7 @@ public class DeathSceneOverlay {
         g.setFont(defaultFont);
         g.drawString("HIGHSCORES", hsX, hsY);
         for (int i = 0; i < SaveScores.highscores.size(); i++) {
-            g.drawString((i + 1) + ") " + SaveScores.highscores.get(i).toString(), hsX, 375 + i * hsY);
+            g.drawString((i + 1) + ") " + SaveScores.highscores.get(i).toString(), hsX, 375 + i * 50);
         }
     }
 

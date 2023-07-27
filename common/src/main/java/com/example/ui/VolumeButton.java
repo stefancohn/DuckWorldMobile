@@ -1,5 +1,4 @@
 package com.example.ui;
-import com.codename1.io.FileSystemStorage;
 import com.codename1.ui.Image;
 import com.codename1.ui.Graphics;
 import com.example.util.Constants;
