@@ -26,6 +26,9 @@ public class PauseOverlay {
     int playButtonShown = 0;
     int quitButtonShown = 0;
 
+    Boolean resumePressed = false;
+    Boolean quitPressed = false;
+
     public PauseOverlay() {
         initialzePauseOverlay();
         initializePauseButtons();
@@ -48,25 +51,31 @@ public class PauseOverlay {
         //resume button function and bounds
         if (Bounds.checkBounds(x, y, xPlacementForButtons, playButtonY, buttonWidth, buttonHeight)) {
             playButtonShown = 1;
+            resumePressed = true;
         }
         //quit button function and bounds
         if (Bounds.checkBounds(x, y, xPlacementForButtons, quitButtonY, buttonWidth, buttonHeight)) {
             quitButtonShown = 1;
+            quitPressed = true;
         }
     }
     public void touchReleased(int x, int y) {
-        if (Bounds.checkBounds(x, y, xPlacementForButtons, playButtonY, buttonWidth, buttonHeight)) {
+        //resume button function and bounds
+        if (resumePressed) {
             Ducky.kh.pause = false;
             PlayingScene.unpaused = true;
             playButtonShown = 0;
+            resumePressed = false;
         }
-        if (Bounds.checkBounds(x, y, xPlacementForButtons, quitButtonY, buttonWidth, buttonHeight)) {
+        //quit button function and bounds
+        if (quitPressed) {
             Game.game.getDucky().defaultDucky();
             Game.game.changeState(Constants.SCENE_MENU);
             quitButtonShown = 0;
+            quitPressed = false; 
         }
         if (Bounds.checkBounds(x, y, Ducky.kh.arrowButtons.pauseButtonX, Ducky.kh.arrowButtons.pauseButtonY, Ducky.kh.arrowButtons.arrowWidth, Ducky.kh.arrowButtons.arrowHeight)) {
-            Ducky.kh.arrowButtons.pauseButtonSprite = 0;
+            Ducky.kh.arrowButtons.pauseButtonSprite = 0; //make pause button lighten after press
         }
     }
 

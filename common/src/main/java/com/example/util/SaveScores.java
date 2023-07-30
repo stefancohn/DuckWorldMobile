@@ -17,9 +17,6 @@ public class SaveScores {
             saveScores(); //write down the score for future reference
         }
         cleanScores(); //clean them up at the end
-        for (int i = 0; i < highscores.size(); i++) {
-            System.out.println(highscores.get(i));
-        }
     }
 
     private static Boolean isTop5(int score) { //determines if a number is top 5 and also adds it to our arraylist 

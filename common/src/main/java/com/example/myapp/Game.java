@@ -27,7 +27,7 @@ public class Game implements Runnable {
 
     public Game() {
         changeState(sceneNum);
-        audioPlayer.playAudio("/fluffingADuck.wav");
+        audioPlayer.playAudio("https://www.youtube.com/watch?v=yQjAF3frudY");
        // frame.add(panel);
         //frame.pack();
         //frame.setIconImage(logo.getImage());

@@ -17,6 +17,7 @@ public class MenuSceneOverlay {
     public int playButtonHeight = (int)(100 * Constants.HEIGHT_SCALE);
     public int playButtonX = (int) (((Constants.DEVICE_WIDTH)/2) - (playButtonWidth/2));
     public int playButtonY =  (int) (((Constants.DEVICE_HEIGHT/2)) - (playButtonHeight/2));
+    Boolean buttonPressed = false;
 
     public MenuSceneOverlay() {
         initializePlayButton();
@@ -32,12 +33,14 @@ public class MenuSceneOverlay {
     public void touchMovement(int x, int y) {
         if (Bounds.checkBounds(x, y, playButtonX, playButtonY, playButtonWidth, playButtonHeight)) {
             buttonSprite = 1;
+            buttonPressed = true;
         }
     }
     public void releaseMovement(int x, int y) {
-        if (Bounds.checkBounds(x, y, playButtonX, playButtonY, playButtonWidth, playButtonHeight)) {
+        if (buttonPressed) {
             Game.game.changeState(Constants.SCENE_PLAYING); //change scene if play button clicked
             buttonSprite = 0;
+            buttonPressed = false; 
         }
     }
 

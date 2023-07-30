@@ -15,6 +15,8 @@ public class KeyHandler {
     public Boolean pause = false;
     public String direction = "";
 
+    Boolean upTouched = false; 
+
     public playingUI arrowButtons = new playingUI(); 
 
     public void touchMovement(int x, int y) {
@@ -22,6 +24,7 @@ public class KeyHandler {
             upPressed = true;
             direction = "up";
             arrowButtons.arrowSprite = 2;
+            upTouched = true;
         } 
         if (Bounds.checkBounds(x, y, arrowButtons.xPos, arrowButtons.sideArrowY, arrowButtons.arrowWidth, arrowButtons.arrowHeight)) { 
             leftPressed = true;
@@ -49,22 +52,23 @@ public class KeyHandler {
 
     
     public void keyReleased(int x, int y) {
-        if (Bounds.checkBounds(x, y, arrowButtons.upArrowX, arrowButtons.yPos, arrowButtons.arrowWidth, arrowButtons.arrowHeight)) {
+        if (upTouched) {
             //upPressed = false;
             direction = "";
             arrowButtons.arrowSprite = 0;
+            upTouched = false;
         } 
-        if (Bounds.checkBounds(x, y, arrowButtons.rightArrowX, arrowButtons.sideArrowY, arrowButtons.arrowWidth, arrowButtons.arrowHeight)) {
+        if (rightPressed) {
             rightPressed = false;
             direction = "";
             arrowButtons.arrowSprite = 0;
         }
-        if (Bounds.checkBounds(x, y, arrowButtons.xPos, arrowButtons.sideArrowY, arrowButtons.arrowWidth, arrowButtons.arrowHeight)) { 
+        if (leftPressed) { 
             leftPressed = false;
             direction = "";
             arrowButtons.arrowSprite = 0;
         }
-        if (Bounds.checkBounds(x, y, arrowButtons.shootButtonX, arrowButtons.shootButtonY, arrowButtons.arrowWidth, arrowButtons.arrowHeight)) {
+        if (spacePressed) {
             arrowButtons.shootButtonSprite = 0; 
         }
     } 
