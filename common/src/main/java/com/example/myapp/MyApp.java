@@ -1,6 +1,8 @@
 package com.example.myapp;
 
+import com.codename1.admob.AdMobManager;
 import com.codename1.system.Lifecycle;
+import com.codename1.ui.Display;
 import com.codename1.ui.Toolbar;
 
 /**
@@ -9,15 +11,23 @@ import com.codename1.ui.Toolbar;
  */
 //./run.sh
 public class MyApp extends Lifecycle {
+    public static AdMobManager admob;
     @Override //entry point 
     public void runApp() {
         Game.game = Game.getGame();
         Game.game.startGameThread();
         init(getClass());
     }
-        @Override
-        public void init(Object context) {
-            Toolbar.setGlobalToolbar(false);
+    @Override
+    public void init(Object context) {
+        Toolbar.setGlobalToolbar(false); //remove toolbar from top 
+
+        //set up admobid to correspond with apple/android 
+        String admobId = "ca-app-pub-9749305699775932~6495740792";
+        if(Display.getInstance().getPlatformName().equals("ios")){
+            admobId = "ca-app-pub-9749305699775932~9916111055";
         }
+        admob = new AdMobManager(admobId);
+    }
 
 }

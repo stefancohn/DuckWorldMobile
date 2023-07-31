@@ -33,13 +33,23 @@ public class AudioPlayer {
     public void playAudio(String fileName) {
         try {
             if (MEDIA == null) {
-                //InputStream is = CN.getResourceAsStream(fileName);
-                //System.out.println(is);
-                MEDIA = MediaManager.createMedia(fileName, true);
+                InputStream is = CN.getResourceAsStream(fileName);
+                System.out.println(is);
+                MEDIA = MediaManager.createMedia(is, "audio/wav", new Runnable() {
+                    @Override
+                    public void run() {
+                        MEDIA = null;
+                    }
+                });
             if (MEDIA != null && MEDIA.isPlaying() == false) {
                 MEDIA.setVolume(100);
                 MEDIA.play();
             } }
-        } catch (IOException ioe) { ioe.printStackTrace(); }
+        }catch (IOException ioe) { 
+            if(ioe.getCause() != null) {
+                ioe.getCause().printStackTrace();
+            }
+            ioe.printStackTrace(); 
+         }
     } }
 

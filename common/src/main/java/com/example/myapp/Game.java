@@ -1,4 +1,5 @@
 package com.example.myapp;
+import com.codename1.admob.AdMobManager;
 import com.codename1.ui.Graphics;
 import com.example.audio.AudioPlayer;
 import com.example.entity.Ducky;
@@ -27,7 +28,7 @@ public class Game implements Runnable {
 
     public Game() {
         changeState(sceneNum);
-        audioPlayer.playAudio("https://www.youtube.com/watch?v=yQjAF3frudY");
+        audioPlayer.playAudio("/fluffingADuck.wav");
        // frame.add(panel);
         //frame.pack();
         //frame.setIconImage(logo.getImage());
@@ -82,6 +83,8 @@ public class Game implements Runnable {
             case Constants.SCENE_DEATH: 
                 currentScene = new DeathScene();
                 this.sceneNum = 2;
+                System.out.println(MyApp.admob.loadAd());
+                MyApp.admob.loadAndShow();
                 //audioPlayer.playSong(AudioPlayer.HIGHSCORE_SONG);
                 break;
             default:
