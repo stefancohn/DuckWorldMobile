@@ -69,9 +69,9 @@ public class EnemyManager {
         }
     }
 
-    public void callXOffsetGoose() {
+    public void callXOffsetGoose(int offset) {
         for (Goose goose : enemies) {
-            goose.xOffsetForConstantMove(Constants.MOVE_SCREEN_RIGHT_LENGTH * Constants.TILES_SIZE);
+            goose.xOffsetForConstantMove(offset);
         }
     }
 
@@ -131,9 +131,9 @@ public class EnemyManager {
         removeGoose();
         removeProjectiles();
     }
-    public void draw(Graphics g) {
+    public void draw(Graphics g, int xOffset) {
         for (Goose goose : enemies) {
-            goose.draw(g);
+            goose.draw(g, xOffset);
         }
         for (int i = 0; i < projectiles.size(); i++) {
             projectiles.get(i).draw(g);

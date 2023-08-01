@@ -154,7 +154,7 @@ import com.example.util.SaveScores;
                         airWallCollision = true;
                     }
                 }
-                else if (!Collisions.canMoveHere(hitbox.x + Constants.DUCKY_SPEED, hitbox.y, hitbox.width, hitbox.height, levelData)) {
+                else if (!Collisions.canMoveHere(hitbox.x + Constants.DUCKY_SPEED, hitbox.y, duckDimensionsIdle, hitbox.height, levelData)) {
                     hitbox.x = Collisions.getXposNextToWallRightIdle(hitbox);
                 } else if (!Collisions.canMoveHere(hitbox.x - Constants.DUCKY_SPEED, hitbox.y, hitbox.width, hitbox.height, levelData)) {
                     hitbox.x = Collisions.getXPosNextToWallLeft(hitbox);
@@ -300,15 +300,15 @@ import com.example.util.SaveScores;
             setAni();
             updateAni();
         }
-        public void draw(Graphics g) {
+        public void draw(Graphics g, int xOffset) {
             if (direction == "right" || direction == "attackingRight") {
-                g.drawImage(duckAni[spriteRow][spriteLoop], (int) (Constants.WIDTH_SCALE * (hitbox.x - 10)),(int) (Constants.HEIGHT_SCALE * hitbox.y), (int) (width * Constants.WIDTH_SCALE), (int) (height * Constants.HEIGHT_SCALE));
+                g.drawImage(duckAni[spriteRow][spriteLoop], (int) (Constants.WIDTH_SCALE * (hitbox.x - 10 - xOffset)),(int) (Constants.HEIGHT_SCALE * hitbox.y), (int) (width * Constants.WIDTH_SCALE), (int) (height * Constants.HEIGHT_SCALE));
                 //drawHitbox(g);
             } else if (direction == "left" || direction == "attackingLeft") {
-                g.drawImage(duckAni[spriteRow][spriteLoop], (int) (Constants.WIDTH_SCALE * (hitbox.x - 8)), (int) (hitbox.y * Constants.HEIGHT_SCALE), (int) (width * Constants.WIDTH_SCALE), (int) (height * Constants.HEIGHT_SCALE));
+                g.drawImage(duckAni[spriteRow][spriteLoop], (int) (Constants.WIDTH_SCALE * (hitbox.x - 8 - xOffset)), (int) (hitbox.y * Constants.HEIGHT_SCALE), (int) (width * Constants.WIDTH_SCALE), (int) (height * Constants.HEIGHT_SCALE));
                 //drawHitbox(g);
             } else {
-                g.drawImage(duckAni[spriteRow][spriteLoop], (int) (hitbox.x * Constants.WIDTH_SCALE), (int) (hitbox.y * Constants.HEIGHT_SCALE), (int) (width * Constants.WIDTH_SCALE), (int) (height * Constants.HEIGHT_SCALE));
+                g.drawImage(duckAni[spriteRow][spriteLoop], (int) (hitbox.x * Constants.WIDTH_SCALE - xOffset), (int) (hitbox.y * Constants.HEIGHT_SCALE), (int) (width * Constants.WIDTH_SCALE), (int) (height * Constants.HEIGHT_SCALE));
                 //drawHitbox(g);
             }
         }

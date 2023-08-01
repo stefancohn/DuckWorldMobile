@@ -14,10 +14,8 @@ public class MyApp extends Lifecycle {
     public static AdMobManager admob;
     @Override //entry point 
     public void runApp() {
-        Game.game = Game.getGame();
-        Game.game.startGameThread();
-        init(getClass());
     }
+
     @Override
     public void init(Object context) {
         Toolbar.setGlobalToolbar(false); //remove toolbar from top 
@@ -28,6 +26,8 @@ public class MyApp extends Lifecycle {
             admobId = "ca-app-pub-9749305699775932~9916111055";
         }
         admob = new AdMobManager(admobId);
-    }
 
+        Game.game = Game.getGame();
+        Game.game.startGameThread();
+    }
 }

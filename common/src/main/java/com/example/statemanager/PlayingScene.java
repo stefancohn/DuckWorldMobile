@@ -23,6 +23,8 @@ public class PlayingScene extends Scene {
     int obstacleCounter = 0;
     Random patternChooser = new Random();
     int pattern = patternChooser.nextInt(Constants.AMOUNT_OF_PATTERNS);
+    int xOffset = 0;
+    int shiftCounter = 0;
     
     //variables for pause overlay 
     public static PauseOverlay pauseScreen = new PauseOverlay();
@@ -40,31 +42,41 @@ public class PlayingScene extends Scene {
     //implements the shiftLevelRight thingy to shift the level every 50 updates
     public void constantScreenMove() { 
         timerForConstantScreenMoveMethod++;
-        if ((int)PlayingScene.gameScore < 32) { //caps off screen move once difficulty hits 31
-            if (timerForConstantScreenMoveMethod % (50 - (int)PlayingScene.gameScore) == 0) {
+        if ((int)PlayingScene.gameScore > 6) { //caps off screen move once difficulty hits >6 to fastest screen move
+            constantScreenMoveMethod();
+        } else if ((int)PlayingScene.gameScore > 2) {
+            if (timerForConstantScreenMoveMethod % 2 == 0) { //mid diff
                 constantScreenMoveMethod();
+                timerForConstantScreenMoveMethod = 0;
             }
         } else {
-            if (timerForConstantScreenMoveMethod % 19 == 0) {
+            if (timerForConstantScreenMoveMethod % 3 == 0) { //lowest diff
                 constantScreenMoveMethod();
+                timerForConstantScreenMoveMethod = 0;
             }
         }
     } 
 
     public void constantScreenMoveMethod() {
-        duck.xOffsetForConstantMove(Constants.MOVE_SCREEN_RIGHT_LENGTH * Constants.TILES_SIZE);
-        enemyManager.callXOffsetGoose();
-        levelManager.getCurrentLevel().shiftLevelRight(Constants.MOVE_SCREEN_RIGHT_LENGTH);
-        //moves ducky with the xOffset(moveScreenRightLength) so he is updated correctly
-        if (obstacleCounter < 50) { 
-            levelManager.transformMainLevel(Constants.MOVE_SCREEN_RIGHT_LENGTH, obstacleCounter, pattern);
-            enemyManager.spawnGooseRandom();
-            obstacleCounter+= Constants.MOVE_SCREEN_RIGHT_LENGTH;
-        } else { //restart screen moving and chose new level pattern when level sequence length reached
-            PlayingScene.gameScore += .2001;
-            obstacleCounter = 0;
-            pattern = patternChooser.nextInt(Constants.AMOUNT_OF_PATTERNS);
-        }
+        xOffset++;
+        shiftCounter++;
+        if (shiftCounter % 16 == 0) { //once a whole tile has been "shown" we shift blocks 
+            levelManager.getCurrentLevel().shiftLevelRight(Constants.MOVE_SCREEN_RIGHT_LENGTH);
+            duck.xOffsetForConstantMove(16);
+            enemyManager.callXOffsetGoose(16);
+            //moves ducky with the xOffset(moveScreenRightLength) so he is updated correctly
+            if (obstacleCounter < 10) { 
+                levelManager.transformMainLevel(Constants.MOVE_SCREEN_RIGHT_LENGTH, obstacleCounter, pattern);
+                enemyManager.spawnGooseRandom();
+                obstacleCounter+= Constants.MOVE_SCREEN_RIGHT_LENGTH;
+            } else { //restart screen moving and chose new level pattern when level sequence length reached
+                PlayingScene.gameScore += .2001;
+                obstacleCounter = 0;
+                pattern = patternChooser.nextInt(Constants.AMOUNT_OF_PATTERNS);
+            }
+            shiftCounter = 0;
+            xOffset = 0;
+        } 
     }
 
     public void unpauseTimer() {
@@ -94,9 +106,9 @@ public class PlayingScene extends Scene {
     }
     @Override
     public void draw(Graphics g) {
-        levelManager.draw(g); //draw level
-        duck.draw(g); //draw ducky
-        enemyManager.draw(g); //draw enemies
+        levelManager.draw(g, xOffset); //draw level
+        duck.draw(g, xOffset); //draw ducky
+        enemyManager.draw(g, xOffset); //draw enemies
 
         // draw game score
         Font defaultFont = Font.createSystemFont(Font.FACE_MONOSPACE, Font.STYLE_PLAIN, Font.SIZE_LARGE);

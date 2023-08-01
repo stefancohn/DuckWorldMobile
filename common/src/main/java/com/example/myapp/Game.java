@@ -1,4 +1,6 @@
 package com.example.myapp;
+import java.util.Random;
+
 import com.codename1.admob.AdMobManager;
 import com.codename1.ui.Graphics;
 import com.example.audio.AudioPlayer;
@@ -16,8 +18,6 @@ public class Game implements Runnable {
     GameContainer panel = new GameContainer(this);
     GameForm frame = new GameForm(panel);
 
-    // ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource("res/duckIcon.png")); //for image icon
-
     Ducky duck = new Ducky( 100, 200, 40, 40);
 
     Scene currentScene;
@@ -26,9 +26,11 @@ public class Game implements Runnable {
     public AudioPlayer audioPlayer = new AudioPlayer(); //audio player 
     public VolumeButton volumeButton = new VolumeButton();
 
+    Random random = new Random();
+
     public Game() {
         changeState(sceneNum);
-        audioPlayer.playAudio("/fluffingADuck.wav");
+        audioPlayer.playAudio("/fluffingADuck.mp3");
        // frame.add(panel);
         //frame.pack();
         //frame.setIconImage(logo.getImage());
@@ -83,8 +85,11 @@ public class Game implements Runnable {
             case Constants.SCENE_DEATH: 
                 currentScene = new DeathScene();
                 this.sceneNum = 2;
-                System.out.println(MyApp.admob.loadAd());
-                MyApp.admob.loadAndShow();
+
+                int chanceForAd = random.nextInt(100); //ad has 40 percent chance of spawning 
+                if (chanceForAd > 60) {
+                    MyApp.admob.loadAndShow();
+                }
                 //audioPlayer.playSong(AudioPlayer.HIGHSCORE_SONG);
                 break;
             default:

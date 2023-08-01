@@ -60,18 +60,18 @@ public class LevelManager {
 
     public void update() {
     }
-    public void draw(Graphics g) {
+    public void draw(Graphics g, int xOffset) {
         g.drawImage(background, 0, 0, Constants.DEVICE_WIDTH, Constants.DEVICE_HEIGHT);
-        for (int i = 0; i < Constants.TILES_IN_HEIGHT; i++) 
-            for (int j = 0; j < Constants.TILES_IN_WIDTH; j++) {
+        for (int i = 0; i < mainLevel.getLevelData().length; i++) 
+            for (int j = 0; j < mainLevel.getLevelData()[0].length; j++) {
                 int index = mainLevel.getSpriteIndex(i, j);
                 if (index != 4) {
                 //scaled for mobile screen
                 //does not draw any black squares in the case that a background is to be drawn
-                    g.drawImage(levelSprite[index], j * widthOfBlocks, i * heightOfBlocks, widthOfBlocks, heightOfBlocks);
-                    if (j == 49) { //because we have to convert from float to int, we don't get exact calculations thus leaving
+                    g.drawImage(levelSprite[index], j * widthOfBlocks - xOffset, i * heightOfBlocks, widthOfBlocks, heightOfBlocks);
+                    if (j == 50) { //because we have to convert from float to int, we don't get exact calculations thus leaving
                     //some white space after the last block, so to compensate, we draw one more "fake" column of blocks 
-                        g.drawImage(levelSprite[index], 50 * widthOfBlocks, i * heightOfBlocks, widthOfBlocks, heightOfBlocks);
+                        g.drawImage(levelSprite[index], 51 * widthOfBlocks, i * heightOfBlocks, widthOfBlocks, heightOfBlocks);
                     }
                     if (i == 29) {//same ordeal here but for the last row 
                         g.drawImage(levelSprite[index], j * widthOfBlocks, 30 * heightOfBlocks, widthOfBlocks, heightOfBlocks);

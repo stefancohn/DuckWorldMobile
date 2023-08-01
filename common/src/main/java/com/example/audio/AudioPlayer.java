@@ -12,25 +12,18 @@ public class AudioPlayer {
     private Media MEDIA = null;
     Media video = null;
     
-    /*public AudioPlayer() {
-        media = loadSounds("/fluffingADuck.mp3");
-        media.setVolume(100);
-        media.play();
-    }
-    public Media loadSounds(String file) {
-        Media media = null;
+    public void playAudio(String mp3FileName) {
         try {
-            InputStream is = CN.getResourceAsStream(file);
-            System.out.println(is);
-            Media sound = MediaManager.createMedia(is, "audio/mpeg");
-            return sound;
+            Media media = MediaManager.createMedia((Display.getInstance()
+                    .getResourceAsStream(getClass(), mp3FileName)), "audio/mpeg");
+    
+            media.play();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Play Error: " + e);
         }
-        return media;
-    } */
-
-    public void playAudio(String fileName) {
+    }
+}
+    /*public void playAudio(String fileName) {
         try {
             if (MEDIA == null) {
                 InputStream is = CN.getResourceAsStream(fileName);
@@ -50,6 +43,6 @@ public class AudioPlayer {
                 ioe.getCause().printStackTrace();
             }
             ioe.printStackTrace(); 
-         }
-    } }
+         } 
+    } } */
 
